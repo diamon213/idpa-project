@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane prefHeight="166.0" prefWidth="381.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="control.CsvImportController">
+   <children>
+      <TextField fx:id="fileTextField" editable="false" focusTraversable="false" layoutX="79.0" layoutY="77.0" prefHeight="26.0" prefWidth="221.0" promptText=".csv Datei anhängen" />
+      <Button fx:id="fileButton" defaultButton="true" layoutX="301.0" layoutY="77.0" mnemonicParsing="false" onAction="#pressFilechooser" prefHeight="26.0" prefWidth="30.0" text="..." />
+      <Label layoutX="27.0" layoutY="17.0" prefHeight="42.0" prefWidth="291.0" text="Klasse über .CSV Datei importieren">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Button fx:id="okButton" layoutX="79.0" layoutY="116.0" mnemonicParsing="false" onAction="#pressOk" prefHeight="26.0" prefWidth="110.0" text="OK" />
+      <Button cancelButton="true" layoutX="194.0" layoutY="116.0" mnemonicParsing="false" onAction="#pressCancel" prefHeight="26.0" prefWidth="110.0" text="Abbrechen" />
+   </children>
+</AnchorPane>
