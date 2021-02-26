@@ -23,8 +23,6 @@ public class OverviewController {
 
     public Vector<Studyset> studysets;
 
-    @FXML
-    public Button btn_i3a = null;
 
     @FXML
     public VBox vbox = null;
@@ -36,17 +34,23 @@ public class OverviewController {
     public Button asd = null;
 
     public void btnHome(ActionEvent event) throws IOException {
-        System.out.println("Home");
-        Scene homeScene = new Scene(FXMLLoader.load(getClass().getResource("../view/home.fxml")));
-        Stage primaryStage = (Stage) btn_i3a.getScene().getWindow();
-        primaryStage.setScene(homeScene);
+
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("../view/home.fxml"));
+        Parent root = loader.load();
+        Stage primaryStage = (Stage) vbox.getScene().getWindow();
+
+        HomeController controller = loader.getController();
+        controller.initData(studysets);
+
+        primaryStage.setScene(new Scene(root));
         primaryStage.show();
     }
 
     public void btnLernsets(ActionEvent event) throws IOException {
         System.out.println("Lernsets");
         Scene lernsetScene = new Scene(FXMLLoader.load(getClass().getResource("../view/overview.fxml")));
-        Stage primaryStage = (Stage) btn_i3a.getScene().getWindow();
+        Stage primaryStage = (Stage) vbox.getScene().getWindow();
         primaryStage.setScene(lernsetScene);
         primaryStage.show();
     }

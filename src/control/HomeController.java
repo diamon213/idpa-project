@@ -39,7 +39,6 @@ public class HomeController {
     }
 
     public void pressLernsets(ActionEvent event) throws IOException {
-        System.out.println("Lernsets");
 
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource("../view/overview.fxml"));

@@ -2,8 +2,12 @@ package control;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
@@ -11,6 +15,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 import model.Student;
 import model.Studyset;
 
@@ -20,7 +25,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.Vector;
 
-public class StudysetController implements Initializable {
+public class StudysetController {
 
     public Vector<Studyset> studysets;
     public Studyset currentStudyset;
@@ -35,27 +40,58 @@ public class StudysetController implements Initializable {
     private VBox vbox;
 
     @FXML
-    void btnHome(ActionEvent event) {
+    void btnHome(ActionEvent event) throws IOException {
+        navigate("../view/home.fxml");
+    }
+
+    public void navigate(String viewPath) throws IOException {
+
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource(viewPath));
+        Parent root = loader.load();
+
+        Stage primaryStage = (Stage) vbox.getScene().getWindow();
+        if (viewPath.equals("../view/home.fxml")) {
+            HomeController controller = loader.getController();
+            controller.initData(studysets);
+        } else if (viewPath.equals("../view/overview.fxml")) {
+            OverviewController controller = loader.getController();
+            controller.initData(studysets);
+        } else {
+            System.out.println("wrong usage");
+            return;
+        }
+
+        primaryStage.setScene(new Scene(root));
+        primaryStage.show();
 
     }
 
     @FXML
-    void btnLernsets(ActionEvent event) {
-
+    void btnLernsets(ActionEvent event) throws IOException {
+        navigate("../view/overview.fxml");
     }
 
     @FXML
-    void keyTyped(KeyEvent event) {
+    public void keyTyped(KeyEvent event) {
+        String text = searchbar.getText();
 
+        for (int i = 0; i < vbox.getChildren().size(); i++) {
+            HBox hbox = (HBox) vbox.getChildren().get(i);
+            Label firstname = (Label) hbox.getChildren().get(1);
+            Label lastname = (Label) hbox.getChildren().get(2);
+            if (firstname.getText().toLowerCase().contains(text.toLowerCase()) ||lastname.getText().toLowerCase().contains(text.toLowerCase())) {
+                vbox.getChildren().get(i).setVisible(true);
+                vbox.getChildren().get(i).setManaged(true);
+            } else {
+                vbox.getChildren().get(i).setVisible(false);
+                vbox.getChildren().get(i).setManaged(false);
+            }
+        }
     }
 
     @FXML
     void pressButton(ActionEvent event) {
-
-    }
-
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
 
     }
 
