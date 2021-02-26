@@ -4,7 +4,6 @@ package control;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -18,11 +17,9 @@ import javafx.stage.Stage;
 import model.Studyset;
 
 import java.io.IOException;
-import java.net.URL;
-import java.util.ResourceBundle;
 import java.util.Vector;
 
-public class OverviewController implements Initializable {
+public class OverviewController {
 
     public Vector<Studyset> studysets;
 
@@ -58,7 +55,7 @@ public class OverviewController implements Initializable {
         /*Button button = new Button();
         vbox.getChildren().add(button);*/
         try {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../view/addStudyset.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../view/editStudyset.fxml"));
             Parent root1 = fxmlLoader.load();
             Stage stage = new Stage();
             stage.setTitle("Lernset zusammenstellen...");
@@ -80,6 +77,10 @@ public class OverviewController implements Initializable {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../view/csvImport.fxml"));
             Parent root1 = fxmlLoader.load();
             Stage stage = new Stage();
+
+            CsvImportController controller = fxmlLoader.getController();
+            controller.initData(studysets);
+
             stage.setTitle("Klasse importieren...");
             stage.setScene(new Scene(root1));
             stage.initModality(Modality.WINDOW_MODAL);
@@ -108,12 +109,7 @@ public class OverviewController implements Initializable {
     }
 
     public void pressButton(ActionEvent event) {
-        System.out.println(vbox.getChildren().get(0));
-    }
-
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-
+        System.out.println(studysets.size());
     }
 
     public void initVbox() {

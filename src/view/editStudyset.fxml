@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="372.0" prefWidth="515.0" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml">
+   <children>
+      <ScrollPane layoutX="-1.0" layoutY="113.0" prefHeight="258.0" prefWidth="515.0">
+         <content>
+            <VBox prefHeight="298.0" prefWidth="499.0" spacing="10.0">
+               <children>
+                  <HBox prefHeight="115.0" prefWidth="591.0" spacing="10.0">
+                     <children>
+                        <ImageView fitHeight="125.0" fitWidth="50.0" opacity="0.61" pickOnBounds="true" preserveRatio="true">
+                           <HBox.margin>
+                              <Insets left="30.0" right="40.0" top="29.0" />
+                           </HBox.margin>
+                           <image>
+                              <Image url="@../assets/file.png" />
+                           </image>
+                        </ImageView>
+                        <VBox prefHeight="117.0" prefWidth="66.0" spacing="30.0">
+                           <children>
+                              <Label text="Vorname:" />
+                              <Label text="Nachname:" />
+                              <Label text="Anrede:" />
+                           </children>
+                        </VBox>
+                        <VBox prefHeight="126.0" prefWidth="154.0" spacing="20.0">
+                           <children>
+                              <TextField prefWidth="126.0" />
+                              <TextField />
+                              <ChoiceBox prefWidth="150.0" />
+                           </children>
+                        </VBox>
+                        <ImageView fitHeight="125.0" fitWidth="50.0" opacity="0.61" pickOnBounds="true" preserveRatio="true">
+                           <HBox.margin>
+                              <Insets left="50.0" top="29.0" />
+                           </HBox.margin>
+                           <image>
+                              <Image url="@../assets/file.png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </HBox>
+               </children>
+               <padding>
+                  <Insets top="10.0" />
+               </padding>
+            </VBox>
+         </content>
+      </ScrollPane>
+      <Label layoutX="14.0" layoutY="41.0" text="Name des Lernsets:">
+         <font>
+            <Font size="26.0" />
+         </font>
+      </Label>
+      <TextField layoutX="265.0" layoutY="47.0" prefHeight="26.0" prefWidth="212.0" />
+   </children>
+</AnchorPane>

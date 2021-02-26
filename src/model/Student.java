@@ -16,15 +16,18 @@ public class Student {
     private UUID studentUUID;
     private String firstName;
     private String lastName;
+    private String salutation;
     private String schoolClass;
     private Mastery mastery;
     private Image image;
 
-    public Student(String firstName, String lastName, String schoolClass) {
+    public Student(String firstName, String lastName, String schoolClass, String salutation, Mastery mastery) {
         this.studentUUID = UUID.randomUUID();
         this.firstName = firstName;
         this.lastName = lastName;
         this.schoolClass = schoolClass;
+        this.salutation = salutation;
+        this.mastery = mastery;
     }
 
     public UUID getStudentUUID() {
@@ -77,5 +80,13 @@ public class Student {
 
     public void setImage(Image image) {
         this.image = image;
+    }
+
+    public String getSalutation() {
+        return salutation;
+    }
+
+    public void setSalutation(String salutation) {
+        this.salutation = salutation;
     }
 }

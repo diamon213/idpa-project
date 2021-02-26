@@ -5,6 +5,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import model.Mastery;
+import model.Student;
 import model.Studyset;
 
 import java.util.Vector;
@@ -35,18 +37,18 @@ public class Main extends Application {
     public void initDataFromDB() {
         //TODO initialize data from DB
         studysets = new Vector<>();
-        studysets.add(new Studyset("i2a"));
-        studysets.add(new Studyset("i3a"));
-        studysets.add(new Studyset("i5a"));
-        studysets.add(new Studyset("i6a"));
-        studysets.add(new Studyset("i2a"));
-        studysets.add(new Studyset("i3a"));
-        studysets.add(new Studyset("i5a"));
-        studysets.add(new Studyset("i6a"));
-        studysets.add(new Studyset("i2a"));
-        studysets.add(new Studyset("i3a"));
-        studysets.add(new Studyset("i5a"));
-        studysets.add(new Studyset("i6a"));
+
+        Studyset recentStudyset = new Studyset("G4b");
+        recentStudyset.setMostRecent(true);
+
+        studysets.add(recentStudyset);
+        studysets.add(new Studyset("I3a"));
+        studysets.add(new Studyset("H2a"));
+        studysets.add(new Studyset("I1b"));
+
+        studysets.get(0).addStudent(new Student("Aladin", "Boudouda", "i3a", "Herr", Mastery.KNOWN));
+        studysets.get(0).addStudent(new Student("Tenzin", "Leduk", "i3a", "Herr", Mastery.MASTERED));
+        studysets.get(0).addStudent(new Student("Andrej", "Klimov", "i3a", "Herr", Mastery.UNKNOWN));
     }
 
 

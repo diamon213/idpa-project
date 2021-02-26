@@ -1,5 +1,6 @@
 package model;
 
+import java.util.ArrayList;
 import java.util.UUID;
 import java.util.Vector;
 
@@ -16,6 +17,7 @@ public class Studyset {
     private String studysetName;
     private Vector<Student> students;
     private int mastery;
+    private Boolean mostRecent = false;
 
     public Studyset(String studysetName) {
         this.studysetUUID = UUID.randomUUID();
@@ -40,6 +42,10 @@ public class Studyset {
         return students;
     }
 
+    public int getStudentCount() {
+        return students.size();
+    }
+
     public void setStudents(Vector<Student> students) {
         this.students = students;
     }
@@ -62,8 +68,10 @@ public class Studyset {
 
     public int calcMastery() {
         for (Student student : students) {
+
             switch (student.getMastery()) {
                 case UNKNOWN -> System.out.println("unknown");
+
                 case KNOWN -> {
                     System.out.println("known");
                     mastery += 50;
@@ -79,5 +87,13 @@ public class Studyset {
         } catch (ArithmeticException e) {
             return 0;
         }
+    }
+
+    public Boolean getMostRecent() {
+        return mostRecent;
+    }
+
+    public void setMostRecent(Boolean mostRecent) {
+        this.mostRecent = mostRecent;
     }
 }

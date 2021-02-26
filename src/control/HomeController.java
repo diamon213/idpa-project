@@ -16,12 +16,21 @@ import java.util.ResourceBundle;
 import java.util.Vector;
 
 
-public class HomeController implements Initializable {
+public class HomeController {
 
     public Vector<Studyset> studysets;
 
     @FXML
-    public Button recent = null;
+    private Button recent;
+
+    @FXML
+    private Button recent1;
+
+    @FXML
+    private Button recent2;
+
+    @FXML
+    private Button recent3;
 
     public void pressButton(ActionEvent event) {
         System.out.println(studysets.get(0).getStudysetName());
@@ -44,12 +53,8 @@ public class HomeController implements Initializable {
         primaryStage.show();
     }
 
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-
-    }
-
     public void initData(Vector<Studyset> studysets) {
         this.studysets = studysets;
+
     }
 }
