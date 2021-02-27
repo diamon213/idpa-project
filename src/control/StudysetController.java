@@ -114,8 +114,29 @@ public class StudysetController {
     }
 
     @FXML
-    void pressButton(ActionEvent event) {
+    void pressFlashcards(ActionEvent event) {
+        initGame(0);
+    }
+    @FXML
+    void pressStudy(ActionEvent event) {
+        initGame(1);
+    }
+    @FXML
+    void pressNames(ActionEvent event) {
+        initGame(2);
+    }
+    @FXML
+    void pressTest(ActionEvent event) {
+        initGame(3);
+    }
 
+    public void initGame(int i) {
+        switch (i) {
+            case 0: //TODO start flashcards
+            case 1: //TODO start studymode
+            case 2: //TODO start namemode
+            case 3: //TODO start test
+        }
     }
 
     @FXML

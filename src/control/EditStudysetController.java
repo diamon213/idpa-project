@@ -48,7 +48,7 @@ public class EditStudysetController {
     public void addNewPerson(Student student) throws FileNotFoundException {
         HBox hbox = new HBox();
 
-        ImageView picture = new ImageView(new Image(new FileInputStream("C:\\Users\\Aladin\\Documents\\testFX\\src\\assets\\file.png")));
+        ImageView picture = new ImageView(new Image(new FileInputStream("src/assets/file.png")));
 
         VBox vbox1 = new VBox();
         VBox vbox2 = new VBox();
@@ -73,7 +73,7 @@ public class EditStudysetController {
             firstnameTextfield.setAccessibleText("UNKNOWN");
         }
 
-        ImageView trash = new ImageView(new Image(new FileInputStream("C:\\Users\\Aladin\\Documents\\testFX\\src\\assets\\delete.png")));
+        ImageView trash = new ImageView(new Image(new FileInputStream("src/assets/delete.png")));
 
         hbox.setSpacing(10);
         hbox.setPrefSize(591, 115);
