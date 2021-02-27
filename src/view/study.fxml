@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ProgressBar?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="542.0" prefWidth="767.0" style="-fx-background-color: #242429;" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="control.StudyController">
+   <children>
+      <AnchorPane prefHeight="542.0" prefWidth="210.0" style="-fx-background-color: #3E606F;">
+         <children>
+            <Label fx:id="progressLabel1" alignment="CENTER" layoutX="40.0" layoutY="195.0" prefHeight="66.0" prefWidth="133.0" text="2/45" textFill="WHITE">
+               <font>
+                  <Font size="32.0" />
+               </font>
+            </Label>
+            <Button layoutY="23.0" mnemonicParsing="false" onAction="#cancelGame" prefHeight="26.0" prefWidth="210.0" style="-fx-background-color: #3E606F;" text="Zurück" textFill="WHITE" underline="true">
+               <font>
+                  <Font size="19.0" />
+               </font>
+            </Button>
+            <ProgressBar fx:id="progressBar" layoutX="21.0" layoutY="454.0" opacity="0.89" prefHeight="18.0" prefWidth="167.0" progress="0.0" />
+            <Label fx:id="titleLabel" alignment="CENTER" layoutX="5.0" layoutY="102.0" prefHeight="66.0" prefWidth="198.0" text="I3a" textFill="WHITE">
+               <font>
+                  <Font size="44.0" />
+               </font>
+            </Label>
+            <Label layoutX="66.0" layoutY="182.0" text="Gemeistert" textFill="#67e563">
+               <font>
+                  <Font size="17.0" />
+               </font>
+            </Label>
+            <Label layoutX="75.0" layoutY="261.0" text="Bekannt" textFill="#f7de4a">
+               <font>
+                  <Font size="17.0" />
+               </font>
+            </Label>
+            <Label layoutX="66.0" layoutY="346.0" text="Unbekannt" textFill="#e3395f">
+               <font>
+                  <Font size="17.0" />
+               </font>
+            </Label>
+            <Label fx:id="progressLabel2" alignment="CENTER" layoutX="40.0" layoutY="287.0" prefHeight="56.0" prefWidth="134.0" text="2/45" textFill="WHITE">
+               <font>
+                  <Font size="32.0" />
+               </font>
+            </Label>
+            <Label fx:id="progressLabel3" alignment="CENTER" layoutX="40.0" layoutY="359.0" prefHeight="66.0" prefWidth="133.0" text="2/45" textFill="WHITE">
+               <font>
+                  <Font size="32.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="result" layoutX="209.0" prefHeight="542.0" prefWidth="558.0" visible="false">
+         <children>
+            <Label fx:id="resultLabel" alignment="CENTER" layoutX="113.0" layoutY="97.0" prefHeight="56.0" prefWidth="332.0" text="Richtig!" textFill="WHITE">
+               <font>
+                  <Font size="39.0" />
+               </font>
+            </Label>
+            <ImageView fx:id="resultImageView" fitHeight="201.0" fitWidth="175.0" layoutX="68.0" layoutY="214.0" pickOnBounds="true" preserveRatio="true" />
+            <Label fx:id="resultName" alignment="CENTER" layoutX="269.0" layoutY="295.0" prefHeight="38.0" prefWidth="249.0" text="Aladin Boudouda" textFill="WHITE">
+               <font>
+                  <Font size="26.0" />
+               </font>
+            </Label>
+            <Button layoutX="238.0" layoutY="443.0" mnemonicParsing="false" onAction="#pressResultNext" style="-fx-background-color: #242429;" text="Weiter" textFill="WHITE" underline="true">
+               <font>
+                  <Font size="19.0" />
+               </font>
+            </Button>
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="prompt" layoutX="195.0" prefHeight="542.0" prefWidth="558.0">
+         <children>
+            <Button layoutX="427.0" layoutY="406.0" mnemonicParsing="false" onAction="#pressAnswer" style="-fx-background-color: #242429;" text="Antwort" textFill="WHITE">
+               <font>
+                  <Font size="19.0" />
+               </font>
+            </Button>
+            <TextField fx:id="answerBar" layoutX="69.0" layoutY="410.0" onAction="#pressAnswer" prefHeight="35.0" prefWidth="358.0" promptText="Antwort..." />
+            <Label fx:id="promptLabel" layoutX="32.0" layoutY="39.0" prefHeight="35.0" prefWidth="371.0" text="Vorname von: " textFill="WHITE">
+               <font>
+                  <Font size="39.0" />
+               </font>
+            </Label>
+            <ImageView fx:id="studentImage" fitHeight="238.0" fitWidth="200.0" layoutX="195.0" layoutY="139.0" pickOnBounds="true" preserveRatio="true" />
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>

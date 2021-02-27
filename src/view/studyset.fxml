@@ -33,9 +33,9 @@
                      <VBox.margin>
                         <Insets top="20.0" />
                      </VBox.margin></Button>
-                  <Button alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#pressStudy" prefHeight="40.0" prefWidth="188.0" text="Lernen" />
-                  <Button alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#pressNames" prefHeight="40.0" prefWidth="188.0" text="Namen-Nachnamen Modus" />
-                  <Button alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#pressTest" prefHeight="40.0" prefWidth="188.0" text="Testen" />
+                  <Button alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#pressStudyFirstnames" prefHeight="40.0" prefWidth="188.0" text="Vornamen lernen" />
+                  <Button alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#pressStudyLastnames" prefHeight="40.0" prefWidth="188.0" text="Nachnamen lernen" />
+                  <Button alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#pressAssign" prefHeight="40.0" prefWidth="188.0" text="Assign" />
                </children>
             </VBox>
          </children>
@@ -66,7 +66,7 @@
             <Label prefHeight="18.0" prefWidth="55.0" text="Lernstand" />
          </children>
       </HBox>
-      <Button layoutX="379.0" layoutY="50.0" mnemonicParsing="false" onAction="#deleteStudyset" prefHeight="34.0" prefWidth="82.0" text="Löschen" />
-      <Button layoutX="291.0" layoutY="50.0" mnemonicParsing="false" onAction="#editStudyset" prefHeight="34.0" prefWidth="82.0" text="Bearbeiten" />
+      <Button contentDisplay="CENTER" layoutX="379.0" layoutY="50.0" mnemonicParsing="false" onAction="#deleteStudyset" prefHeight="34.0" prefWidth="82.0" text="Löschen" />
+      <Button contentDisplay="CENTER" layoutX="291.0" layoutY="50.0" mnemonicParsing="false" onAction="#editStudyset" prefHeight="34.0" prefWidth="82.0" text="Bearbeiten" />
    </children>
 </AnchorPane>

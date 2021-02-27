@@ -3,11 +3,9 @@ package control;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
@@ -22,8 +20,6 @@ import model.Studyset;
 
 import java.io.FileInputStream;
 import java.io.IOException;
-import java.net.URL;
-import java.util.ResourceBundle;
 import java.util.Vector;
 
 public class StudysetController {
@@ -117,25 +113,37 @@ public class StudysetController {
     void pressFlashcards(ActionEvent event) {
         initGame(0);
     }
+
     @FXML
-    void pressStudy(ActionEvent event) {
+    void pressStudyFirstnames(ActionEvent event) {
         initGame(1);
     }
+
     @FXML
-    void pressNames(ActionEvent event) {
+    void pressStudyLastnames(ActionEvent event) {
         initGame(2);
     }
+
     @FXML
-    void pressTest(ActionEvent event) {
+    void pressAssign(ActionEvent event) {
         initGame(3);
     }
 
     public void initGame(int i) {
+        System.out.println(i);
         switch (i) {
-            case 0: startFlashcards();
-            case 1: //TODO start studymode
-            case 2: //TODO start namemode
-            case 3: //TODO start test
+            case 0:
+                startFlashcards();
+                break;
+            case 1:
+                startStudyMode(true);
+                break;
+            case 2:
+                startStudyMode(false);
+                break;
+            case 3:
+                //TODO start namemode
+                break;
         }
     }
 
@@ -155,6 +163,25 @@ public class StudysetController {
             stage.show();
         } catch (Exception e) {
             System.out.println("Cant load window");
+        }
+    }
+
+    void startStudyMode(Boolean mode) {
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../view/study.fxml"));
+            Parent root1 = fxmlLoader.load();
+            Stage stage = new Stage();
+
+            StudyController controller = fxmlLoader.getController();
+            controller.initData(studysets, currentStudyset, mode);
+
+            stage.setTitle("Lernmodus");
+            stage.setScene(new Scene(root1));
+            stage.initModality(Modality.WINDOW_MODAL);
+            stage.initOwner(vbox.getScene().getWindow());
+            stage.show();
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 
