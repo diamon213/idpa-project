@@ -132,10 +132,29 @@ public class StudysetController {
 
     public void initGame(int i) {
         switch (i) {
-            case 0: //TODO start flashcards
+            case 0: startFlashcards();
             case 1: //TODO start studymode
             case 2: //TODO start namemode
             case 3: //TODO start test
+        }
+    }
+
+    void startFlashcards() {
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../view/flashcards.fxml"));
+            Parent root1 = fxmlLoader.load();
+            Stage stage = new Stage();
+
+            FlashcardsController controller = fxmlLoader.getController();
+            controller.initData(studysets, currentStudyset);
+
+            stage.setTitle("Karteikarten");
+            stage.setScene(new Scene(root1));
+            stage.initModality(Modality.WINDOW_MODAL);
+            stage.initOwner(vbox.getScene().getWindow());
+            stage.show();
+        } catch (Exception e) {
+            System.out.println("Cant load window");
         }
     }
 

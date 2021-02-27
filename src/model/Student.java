@@ -50,6 +50,10 @@ public class Student {
         this.lastName = lastName;
     }
 
+    public String getName() {
+        return firstName + " " + lastName;
+    }
+
     public String getSchoolClass() {
         return schoolClass;
     }
