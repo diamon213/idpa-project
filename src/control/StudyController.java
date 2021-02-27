@@ -6,21 +6,25 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 import model.Mastery;
 import model.Student;
+import model.StudyMode;
 import model.Studyset;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Vector;
 
@@ -33,7 +37,7 @@ public class StudyController {
     Vector<Student> knownStudents;
     Vector<Student> unknownStudents;
     Student currentStudent;
-    Boolean mode;
+    StudyMode mode;
 
 
     @FXML
@@ -76,8 +80,20 @@ public class StudyController {
     private ImageView studentImage;
 
     @FXML
+    private Label promptLabel1;
+
+    @FXML
+    private AnchorPane assignPrompt;
+
+    @FXML
+    private ImageView assignImage;
+
+    @FXML
+    private HBox hbox;
+
+    @FXML
     void pressAnswer(ActionEvent event) {
-        initResult();
+        initResult(answerBar.getText());
     }
 
     @FXML
@@ -91,7 +107,9 @@ public class StudyController {
     }
     @FXML
     void cancelGame() {
-        //TODO SAVE
+
+        //TODO save data to DB
+
         try {
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(getClass().getResource("../view/studyset.fxml"));
@@ -111,21 +129,30 @@ public class StudyController {
         }
     }
 
-    void initResult() {
-        String answer = answerBar.getText();
-        Boolean resultCondition;
+    void initResult(String name) {
+        boolean resultCondition = true;
 
         result.setVisible(true);
         result.setManaged(true);
         prompt.setVisible(false);
         prompt.setManaged(false);
+        assignPrompt.setVisible(false);
+        assignPrompt.setManaged(false);
 
-        if (mode) {
-            resultCondition = currentStudent.getFirstName().equalsIgnoreCase(answer);
-        } else {
-            resultCondition = currentStudent.getLastName().equalsIgnoreCase(answer);
+        switch (mode) {
+            case FIRSTNAME -> resultCondition = currentStudent.getFirstName().equalsIgnoreCase(name);
+            case LASTNAME -> resultCondition = currentStudent.getLastName().equalsIgnoreCase(name);
+            case ASSIGN -> resultCondition = currentStudent.getName().equals(name);
         }
 
+        checkResultCondition(resultCondition);
+
+        updateProgress();
+        resultName.setText(currentStudent.getName());
+        resultImageView.setImage(currentStudent.getImage());
+    }
+
+    void checkResultCondition(boolean resultCondition) {
         if (resultCondition) {
 
             resultLabel.setText("Richtig! :)");
@@ -145,9 +172,6 @@ public class StudyController {
             currentStudent.setMastery(Mastery.UNKNOWN);
         }
 
-        updateProgress();
-        resultName.setText(currentStudent.getName());
-        resultImageView.setImage(currentStudent.getImage());
     }
 
     void initPrompt() {
@@ -156,24 +180,68 @@ public class StudyController {
         prompt.setVisible(true);
         prompt.setManaged(true);
 
+        initPromptImage(studentImage);
+
+        if (mode == StudyMode.LASTNAME) {
+            promptLabel.setText("Nachname von:");
+        } else {
+            promptLabel.setText("Vorname von:");
+        }
+
+        answerBar.setText("");
+        updateProgress();
+    }
+
+    void initPromptImage(ImageView imageView) {
         if (currentStudent.getImage() != null) {
-            studentImage.setImage(currentStudent.getImage());
+            imageView.setImage(currentStudent.getImage());
         } else {
             try {
-                studentImage.setImage(new Image(new FileInputStream("")));
+                imageView.setImage(new Image(new FileInputStream("")));
             } catch (FileNotFoundException f) {
                 System.out.println("File not found");
             }
         }
-        answerBar.setText("");
-        updateProgress();
+    }
+
+    void initAssignPrompt() {
+        System.out.println("bruh");
+        ArrayList<Student> studentButtons = new ArrayList<>();
+
+        result.setVisible(false);
+        result.setManaged(false);
+        assignPrompt.setVisible(true);
+        assignPrompt.setManaged(true);
+
+        initPromptImage(assignImage);
+
+        studentButtons.add(currentStudent);
+
+        while (true) {
+            assert false;
+            if (!(studentButtons.size() < 4)) break;
+            Student tempStudent = students.get((int)(Math.random() * students.size()));
+            if (!studentButtons.contains(tempStudent)) {
+                studentButtons.add(tempStudent);
+            }
+        }
+
+        Collections.shuffle(studentButtons);
+
+        for (int i = 0; i < 4; i++) {
+            Button button = (Button) hbox.getChildren().get(i);
+            button.setText(studentButtons.get(i).getName());
+            button.setOnAction(ActionEvent -> {
+                initResult(button.getText());
+            });
+        }
+
     }
 
     void decideNextStudent() {
 
         if (knownStudents.size() == 0 && unknownStudents.size() == 0) {
-            //TODO end study
-
+            System.out.println("No students left");
         } else {
             if (knownStudents.size() > 5) {
                 currentStudent = knownStudents.get((int)(Math.random() * knownStudents.size()));
@@ -183,7 +251,11 @@ public class StudyController {
                 currentStudent = unknownStudents.get((int)(Math.random() * unknownStudents.size()));
 
             }
-            initPrompt();
+            if (mode != StudyMode.ASSIGN) {
+                initPrompt();
+            } else {
+                initAssignPrompt();
+            }
         }
     }
 
@@ -203,7 +275,7 @@ public class StudyController {
         progressBar.setProgress(studyset.getMastery() / 100);
     }
 
-    void initData(Vector<Studyset> studysets, Studyset studyset, Boolean mode) {
+    void initData(Vector<Studyset> studysets, Studyset studyset, StudyMode mode) {
 
         this.studysets = studysets;
         this.studyset = studyset;

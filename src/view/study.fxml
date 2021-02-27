@@ -6,6 +6,7 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane prefHeight="542.0" prefWidth="767.0" style="-fx-background-color: #242429;" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="control.StudyController">
@@ -83,12 +84,30 @@
                </font>
             </Button>
             <TextField fx:id="answerBar" layoutX="69.0" layoutY="410.0" onAction="#pressAnswer" prefHeight="35.0" prefWidth="358.0" promptText="Antwort..." />
-            <Label fx:id="promptLabel" layoutX="32.0" layoutY="39.0" prefHeight="35.0" prefWidth="371.0" text="Vorname von: " textFill="WHITE">
+            <Label fx:id="promptLabel" layoutX="76.0" layoutY="51.0" prefHeight="35.0" prefWidth="371.0" textFill="WHITE">
                <font>
                   <Font size="39.0" />
                </font>
             </Label>
             <ImageView fx:id="studentImage" fitHeight="238.0" fitWidth="200.0" layoutX="195.0" layoutY="139.0" pickOnBounds="true" preserveRatio="true" />
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="assignPrompt" layoutX="224.0" prefHeight="542.0" prefWidth="543.0" visible="false">
+         <children>
+            <Label fx:id="promptLabel1" layoutX="69.0" layoutY="40.0" prefHeight="35.0" prefWidth="371.0" text="Wer ist diese Person?" textFill="WHITE">
+               <font>
+                  <Font size="39.0" />
+               </font>
+            </Label>
+            <ImageView fx:id="assignImage" fitHeight="219.0" fitWidth="198.0" layoutX="181.0" layoutY="135.0" pickOnBounds="true" preserveRatio="true" />
+            <HBox fx:id="hbox" layoutX="36.0" layoutY="398.0" prefHeight="102.0" prefWidth="488.0">
+               <children>
+                  <Button mnemonicParsing="false" prefHeight="82.0" prefWidth="127.0" text="name" />
+                  <Button mnemonicParsing="false" prefHeight="82.0" prefWidth="127.0" text="name" />
+                  <Button mnemonicParsing="false" prefHeight="82.0" prefWidth="127.0" text="name" />
+                  <Button mnemonicParsing="false" prefHeight="82.0" prefWidth="127.0" text="name" />
+               </children>
+            </HBox>
          </children>
       </AnchorPane>
    </children>

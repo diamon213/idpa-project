@@ -66,7 +66,8 @@
             <Label prefHeight="18.0" prefWidth="55.0" text="Lernstand" />
          </children>
       </HBox>
-      <Button contentDisplay="CENTER" layoutX="379.0" layoutY="50.0" mnemonicParsing="false" onAction="#deleteStudyset" prefHeight="34.0" prefWidth="82.0" text="Löschen" />
-      <Button contentDisplay="CENTER" layoutX="291.0" layoutY="50.0" mnemonicParsing="false" onAction="#editStudyset" prefHeight="34.0" prefWidth="82.0" text="Bearbeiten" />
+      <Button alignment="CENTER" contentDisplay="CENTER" graphicTextGap="0.0" layoutX="377.0" layoutY="50.0" mnemonicParsing="false" onAction="#deleteStudyset" prefHeight="34.0" prefWidth="82.0" text="Löschen" />
+      <Button alignment="CENTER" contentDisplay="CENTER" graphicTextGap="0.0" layoutX="223.0" layoutY="50.0" mnemonicParsing="false" onAction="#resetMastery" prefHeight="34.0" prefWidth="150.0" text="Lernstand zurücksetzen" />
+      <Button alignment="CENTER" contentDisplay="CENTER" graphicTextGap="0.0" layoutX="137.0" layoutY="50.0" mnemonicParsing="false" onAction="#editStudyset" prefHeight="34.0" prefWidth="82.0" text="Bearbeiten" />
    </children>
 </AnchorPane>

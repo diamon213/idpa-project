@@ -6,6 +6,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
@@ -15,7 +16,10 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.stage.Window;
+import model.Mastery;
 import model.Student;
+import model.StudyMode;
 import model.Studyset;
 
 import java.io.FileInputStream;
@@ -92,6 +96,25 @@ public class StudysetController {
     }
 
     @FXML
+    void resetMastery() throws IOException {
+        for (Student student: currentStudyset.getStudents()) {
+            student.setMastery(Mastery.UNKNOWN);
+        }
+        currentStudyset.setMastery(currentStudyset.calcMastery());
+
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("../view/studyset.fxml"));
+        Parent root = loader.load();
+
+        Stage primaryStage = (Stage) vbox.getScene().getWindow();
+        StudysetController controller = loader.getController();
+        controller.initData(studysets, currentStudyset);
+
+        primaryStage.setScene(new Scene(root));
+        primaryStage.show();
+    }
+
+    @FXML
     public void keyTyped(KeyEvent event) {
         String text = searchbar.getText();
 
@@ -111,40 +134,60 @@ public class StudysetController {
 
     @FXML
     void pressFlashcards(ActionEvent event) {
-        initGame(0);
+        if (currentStudyset.getStudents().size() == 0) {
+            showAlert("Das Lernset hat gar keine Personen.");
+        } else {
+            startFlashcards();
+        }
     }
 
     @FXML
     void pressStudyFirstnames(ActionEvent event) {
-        initGame(1);
+
+        currentStudyset.setMastery(currentStudyset.calcMastery());
+
+        if (currentStudyset.getStudents().size() == 0) {
+            showAlert("Das Lernset hat gar keine Personen.");
+        } else if (currentStudyset.getMastery() != 100) {
+            startStudyMode(StudyMode.FIRSTNAME);
+        } else {
+            showAlert("Du hast schon alle Namen gemeistert! :)");
+        }
     }
 
     @FXML
     void pressStudyLastnames(ActionEvent event) {
-        initGame(2);
+
+        currentStudyset.setMastery(currentStudyset.calcMastery());
+
+        if (currentStudyset.getStudents().size() == 0) {
+            showAlert("Das Lernset hat gar keine Schüler.");
+        } else if (currentStudyset.getMastery() != 100) {
+            startStudyMode(StudyMode.LASTNAME);
+        } else {
+            showAlert("Du hast schon alle Namen gemeistert! :)");
+        }
     }
 
     @FXML
     void pressAssign(ActionEvent event) {
-        initGame(3);
+
+        currentStudyset.setMastery(currentStudyset.calcMastery());
+
+        if (currentStudyset.getStudentCount() > 3) {
+            startStudyMode(StudyMode.ASSIGN);
+        } else {
+            showAlert("Das Lernset hat zu wenig Schüler für diesen Modus");
+        }
     }
 
-    public void initGame(int i) {
-        System.out.println(i);
-        switch (i) {
-            case 0:
-                startFlashcards();
-                break;
-            case 1:
-                startStudyMode(true);
-                break;
-            case 2:
-                startStudyMode(false);
-                break;
-            case 3:
-                //TODO start namemode
-                break;
-        }
+    private void showAlert(String message) {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Warnung...");
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.initOwner(vbox.getScene().getWindow());
+        alert.show();
     }
 
     void startFlashcards() {
@@ -166,7 +209,7 @@ public class StudysetController {
         }
     }
 
-    void startStudyMode(Boolean mode) {
+    void startStudyMode(StudyMode mode) {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../view/study.fxml"));
             Parent root1 = fxmlLoader.load();
