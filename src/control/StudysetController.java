@@ -15,6 +15,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 import model.Student;
 import model.Studyset;
@@ -38,6 +39,28 @@ public class StudysetController {
 
     @FXML
     private VBox vbox;
+
+    @FXML
+    void editStudyset() {
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../view/editStudyset.fxml"));
+            Parent root1 = fxmlLoader.load();
+            Stage stage = new Stage();
+
+            EditStudysetController controller = fxmlLoader.getController();
+            controller.initData(studysets, currentStudyset,  "../view/studyset.fxml");
+
+            stage.setTitle("Lernset bearbeiten...");
+            stage.setScene(new Scene(root1));
+            stage.initModality(Modality.WINDOW_MODAL);
+            stage.initOwner(vbox.getScene().getWindow());
+            stage.show();
+        } catch (Exception e) {
+            System.out.println("Cant load window");
+        }
+
+        System.out.println("studyset added");
+    }
 
     @FXML
     void btnHome(ActionEvent event) throws IOException {
@@ -95,6 +118,24 @@ public class StudysetController {
 
     }
 
+    @FXML
+    void deleteStudyset(ActionEvent event) throws IOException {
+
+        studysets.remove(currentStudyset);
+        //TODO remove from DB
+
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("../view/overview.fxml"));
+        Parent root = loader.load();
+
+        Stage primaryStage = (Stage) vbox.getScene().getWindow();
+        OverviewController controller = loader.getController();
+        controller.initData(studysets);
+
+        primaryStage.setScene(new Scene(root));
+        primaryStage.show();
+    }
+
     public void initData(Vector<Studyset> studysets, Studyset studyset) throws IOException {
 
         Image masteredImg = new Image(new FileInputStream("./src/assets/mastered.png"));
@@ -139,8 +180,8 @@ public class StudysetController {
             hbox.getChildren().add(lastName);
             hbox.getChildren().add(masteryImg);
 
-            HBox.setMargin(masteryImg, new Insets(10,20,0,0));
-            HBox.setMargin(salutation, new Insets(0,0,0,30));
+            HBox.setMargin(masteryImg, new Insets(10, 20, 0, 0));
+            HBox.setMargin(salutation, new Insets(0, 0, 0, 30));
 
             vbox.getChildren().add(hbox);
         }

@@ -64,7 +64,7 @@ public class CsvImportController {
             csv.append(text);
         }
 
-        Pattern pattern = Pattern.compile("[a-zA-Z_äÄöÖüÜß\"]{1,4};[a-zA-Z0_äÄöÖüÜß \"]{1,40};[a-zA-Z_äÄöÖüÜß \"]{1,40};;;");
+        Pattern pattern = Pattern.compile("[a-zA-Z_äÄöÖüÜß\"]{1,40};[a-zA-Z0_äÄöÖüÜß \"]{1,40};[a-zA-Z_äÄöÖüÜß \"]{1,40};;;");
         Matcher matcher = pattern.matcher(csv);
 
         Studyset studyset = new Studyset(nameTextField.getText());

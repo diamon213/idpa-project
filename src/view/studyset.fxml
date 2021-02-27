@@ -40,7 +40,7 @@
             </VBox>
          </children>
       </AnchorPane>
-      <ScrollPane fitToWidth="true" layoutY="116.0" prefHeight="310.0" prefWidth="462.0">
+      <ScrollPane fitToWidth="true" focusTraversable="false" layoutY="116.0" prefHeight="310.0" prefWidth="462.0">
          <content>
             <VBox fx:id="vbox" prefHeight="330.0" prefWidth="447.0" />
          </content>
@@ -66,6 +66,7 @@
             <Label prefHeight="18.0" prefWidth="55.0" text="Lernstand" />
          </children>
       </HBox>
-      <Button layoutX="387.0" layoutY="50.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="74.0" text="Bearbeiten" />
+      <Button layoutX="379.0" layoutY="50.0" mnemonicParsing="false" onAction="#deleteStudyset" prefHeight="34.0" prefWidth="82.0" text="Löschen" />
+      <Button layoutX="291.0" layoutY="50.0" mnemonicParsing="false" onAction="#editStudyset" prefHeight="34.0" prefWidth="82.0" text="Bearbeiten" />
    </children>
 </AnchorPane>

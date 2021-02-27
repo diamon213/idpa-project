@@ -42,9 +42,11 @@ public class Main extends Application {
         recentStudyset.setMostRecent(true);
 
         studysets.add(recentStudyset);
-        studysets.add(new Studyset("I3a"));
+        studysets.add(new Studyset("I2a"));
         studysets.add(new Studyset("H2a"));
         studysets.add(new Studyset("I1b"));
+
+        studysets.get(0).setMostRecent(true);
 
         studysets.get(0).addStudent(new Student("Aladin", "Boudouda", "i3a", "Herr", Mastery.KNOWN));
         studysets.get(0).addStudent(new Student("Tenzin", "Leduk", "i3a", "Herr", Mastery.MASTERED));

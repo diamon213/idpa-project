@@ -62,6 +62,10 @@ public class OverviewController {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../view/editStudyset.fxml"));
             Parent root1 = fxmlLoader.load();
             Stage stage = new Stage();
+
+            EditStudysetController controller = fxmlLoader.getController();
+            controller.initData(studysets, null, "../view/overview.fxml");
+
             stage.setTitle("Lernset zusammenstellen...");
             stage.setScene(new Scene(root1));
             stage.initModality(Modality.WINDOW_MODAL);
@@ -70,8 +74,6 @@ public class OverviewController {
         } catch (Exception e) {
             System.out.println("Cant load window");
         }
-
-        System.out.println("studyset added");
     }
 
     public void pressImport(ActionEvent event) {
