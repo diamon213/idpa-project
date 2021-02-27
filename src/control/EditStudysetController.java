@@ -218,6 +218,10 @@ public class EditStudysetController {
 
     }
 
+    public void importFromOther() {
+        //TODO import from other set
+    }
+
     void initTable() throws FileNotFoundException {
         for (Student student : studyset.getStudents()) {
             addNewPerson(student);

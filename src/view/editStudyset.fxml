@@ -30,7 +30,7 @@
    <MenuButton layoutX="26.0" layoutY="78.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="166.0" text="Person Hinzufügen">
      <items>
        <MenuItem mnemonicParsing="false" onAction="#pressAdd" text="Neue Person erfassen" />
-       <MenuItem mnemonicParsing="false" text="Person aus anderer Klasse importieren" />
+       <MenuItem mnemonicParsing="false" onAction="#importFromOther" text="Person aus anderem Lernset importieren" />
      </items>
    </MenuButton>
    <Button layoutX="388.0" layoutY="78.0" mnemonicParsing="false" onAction="#saveStudyset" prefHeight="26.0" prefWidth="113.0" text="Lernset speichern" />

@@ -16,25 +16,7 @@
                <font>
                   <Font size="24.0" />
                </font></Button>
-            <HBox fx:id="hbox" layoutX="82.0" layoutY="246.0" prefHeight="100.0" prefWidth="302.0" spacing="14.0">
-               <children>
-                  <Button fx:id="recent1" alignment="BOTTOM_LEFT" mnemonicParsing="false" prefHeight="106.0" prefWidth="92.0" text="Recent">
-                     <font>
-                        <Font size="17.0" />
-                     </font>
-                  </Button>
-                  <Button fx:id="recent3" alignment="BOTTOM_LEFT" mnemonicParsing="false" prefHeight="106.0" prefWidth="92.0" text="Recent">
-                     <font>
-                        <Font size="17.0" />
-                     </font>
-                  </Button>
-                  <Button fx:id="recent2" alignment="BOTTOM_LEFT" mnemonicParsing="false" prefHeight="106.0" prefWidth="92.0" text="Recent">
-                     <font>
-                        <Font size="17.0" />
-                     </font>
-                  </Button>
-               </children>
-            </HBox>
+            <HBox fx:id="hbox" layoutX="82.0" layoutY="246.0" prefHeight="100.0" prefWidth="302.0" spacing="14.0" />
          </children>
       </AnchorPane>
       <AnchorPane layoutX="462.0" maxHeight="624.0" maxWidth="216.0" minHeight="425.0" minWidth="165.0" prefHeight="426.0" prefWidth="190.0">

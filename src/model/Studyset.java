@@ -67,17 +67,15 @@ public class Studyset {
     }
 
     public int calcMastery() {
+        mastery = 0;
         for (Student student : students) {
 
             switch (student.getMastery()) {
-                case UNKNOWN -> System.out.println("unknown");
 
                 case KNOWN -> {
-                    System.out.println("known");
                     mastery += 50;
                 }
                 case MASTERED -> {
-                    System.out.println("mastered");
                     mastery += 100;
                 }
             }
