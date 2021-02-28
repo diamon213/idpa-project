@@ -35,7 +35,7 @@ public class Main extends Application {
     }
 
     public void initDataFromDB() {
-        //TODO initialize data from DB
+        //TODO initialize data from DB or create one
         studysets = new Vector<>();
 
         Studyset recentStudyset = new Studyset("G4b");

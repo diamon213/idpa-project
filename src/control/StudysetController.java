@@ -104,7 +104,7 @@ public class StudysetController {
         }
         currentStudyset.setMastery(currentStudyset.calcMastery());
 
-        //TODO update mastery of all students in current studyset in DB
+        updateDB(currentStudyset);
 
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource("../view/studyset.fxml"));
@@ -237,7 +237,7 @@ public class StudysetController {
 
         studysets.remove(currentStudyset);
 
-        //TODO remove current studyset from DB
+        deleteStudysetFromDB(currentStudyset);
 
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource("../view/overview.fxml"));
@@ -310,5 +310,14 @@ public class StudysetController {
             vbox.setSpacing(5);
             vbox.getChildren().add(hbox);
         }
+    }
+
+    void deleteStudysetFromDB(Studyset studyset) {
+        //TODO remove current studyset from DB
+    }
+
+    void updateDB(Studyset studyset) {
+        //TODO update mastery of all students of current studyset in DB
+        //iterate through students of studyset and update student's mastery in DB
     }
 }

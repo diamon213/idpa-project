@@ -33,6 +33,8 @@ public class EditStudysetController {
     public Studyset studyset;
     public Vector<Studyset> studysets;
     public String scene;
+    public Image addImage;
+    public Image placeholder;
 
     @FXML
     private TextField studysetNameTextfield;
@@ -48,7 +50,7 @@ public class EditStudysetController {
     public void addNewPerson(Student student) throws FileNotFoundException {
         HBox hbox = new HBox();
 
-        ImageView picture = new ImageView(new Image(new FileInputStream("src/assets/file.png")));
+        ImageView picture = new ImageView(addImage);
 
         VBox vbox1 = new VBox();
         VBox vbox2 = new VBox();
@@ -175,7 +177,13 @@ public class EditStudysetController {
             };
 
             Student tempStudent = new Student(firstname, lastname, tempStudysetName, salutation, mastery);
-            tempStudent.setImage(imageView.getImage());
+
+            if (imageView.getImage() == addImage) {
+                tempStudent.setImage(placeholder);
+            } else {
+                tempStudent.setImage(imageView.getImage());
+            }
+
             tempStudyset.addStudent(tempStudent);
         }
 
@@ -250,6 +258,8 @@ public class EditStudysetController {
         this.studysets = studysets;
         this.studyset = studyset;
         this.scene = scene;
+        addImage = new Image(new FileInputStream("src/assets/file.png"));
+        placeholder = new Image(new FileInputStream("src/assets/placeholder.png"));
 
         setTextFieldStyle(studysetNameTextfield);
 

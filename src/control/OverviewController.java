@@ -56,8 +56,6 @@ public class OverviewController {
     }
 
     public void pressAdd(ActionEvent event) {
-        /*Button button = new Button();
-        vbox.getChildren().add(button);*/
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../view/editStudyset.fxml"));
             Parent root1 = fxmlLoader.load();
@@ -77,8 +75,7 @@ public class OverviewController {
     }
 
     public void pressImport(ActionEvent event) {
-        /*Button button = new Button();
-        vbox.getChildren().add(button);*/
+
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../view/csvImport.fxml"));
             Parent root1 = fxmlLoader.load();

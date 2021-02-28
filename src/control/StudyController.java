@@ -37,7 +37,6 @@ public class StudyController {
     Student currentStudent;
     StudyMode mode;
 
-
     @FXML
     private Label progressLabel1;
 
@@ -78,9 +77,6 @@ public class StudyController {
     private ImageView studentImage;
 
     @FXML
-    private Label promptLabel1;
-
-    @FXML
     private AnchorPane assignPrompt;
 
     @FXML
@@ -100,13 +96,9 @@ public class StudyController {
     }
 
     @FXML
-    void pressSkip(ActionEvent event) {
-
-    }
-    @FXML
     void cancelGame() {
 
-        //TODO update mastery of all students of current studyset in DB
+        updateDB(studyset);
 
         try {
             FXMLLoader loader = new FXMLLoader();
@@ -306,6 +298,11 @@ public class StudyController {
         }
 
         decideNextStudent();
+    }
+
+    void updateDB(Studyset studyset) {
+        //TODO update mastery of all students of current studyset in DB
+        //iterate through students of studyset and update student's mastery in DB
     }
 
 }
