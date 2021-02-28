@@ -80,7 +80,9 @@ public class CsvImportController {
             list.clear();
         }
         studysets.add(studyset);
-        //TODO add studyset to DB
+
+        saveToDB(studyset);
+
         lockImport();
     }
 
@@ -122,6 +124,9 @@ public class CsvImportController {
         } catch (Exception e) {
             System.out.println("OOF");
         }
+    }
 
+    void saveToDB(Studyset studyset) {
+        //TODO add studyset to DB
     }
 }

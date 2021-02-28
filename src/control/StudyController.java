@@ -106,7 +106,7 @@ public class StudyController {
     @FXML
     void cancelGame() {
 
-        //TODO save data to DB
+        //TODO update mastery of all students of current studyset in DB
 
         try {
             FXMLLoader loader = new FXMLLoader();

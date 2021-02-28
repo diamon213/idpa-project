@@ -27,7 +27,7 @@ public class Main extends Application {
         HomeController controller = loader.getController();
         controller.initData(studysets);
 
-        primaryStage.setTitle("Hello World");
+        primaryStage.setTitle("MemoXD");
         primaryStage.setScene(new Scene(root, 650, 425));
         primaryStage.show();
 

@@ -185,6 +185,8 @@ public class EditStudysetController {
         studyset = tempStudyset;
         studysets.add(studyset);
 
+        updateDB(studyset);
+
         lockEdit(scene);
     }
 
@@ -255,5 +257,12 @@ public class EditStudysetController {
             initTable();
             studysetNameTextfield.setText(studyset.getStudysetName());
         }
+    }
+
+    void updateDB(Studyset studyset) {
+        //TODO add / update studyset in DB
+        //check if studyset already is in DB
+        //if yes -> update studyset in DB
+        //if no -> add studyset to db
     }
 }

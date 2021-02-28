@@ -197,5 +197,12 @@ public class FlashcardsController {
             }
         }
         studysets.setElementAt(studyset, studysets.indexOf(studyset));
+
+        updateDB(studyset);
+    }
+
+    void updateDB(Studyset studyset) {
+        //TODO update mastery of all students in current studyset in DB
+        //find current studyset in DB then iterate through every student's mastery attribute and update it
     }
 }

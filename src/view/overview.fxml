@@ -19,13 +19,13 @@
                <children>
                   <Label prefHeight="138.0" prefWidth="172.0" text="Lernsets" textFill="WHITE">
                      <font>
-                        <Font name="System Bold" size="32.0" />
+                        <Font name="System Bold" size="38.0" />
                      </font>
                      <VBox.margin>
                         <Insets />
                      </VBox.margin>
                      <padding>
-                        <Insets bottom="50.0" left="10.0" top="30.0" />
+                        <Insets bottom="50.0" left="15.0" top="30.0" />
                      </padding>
                   </Label>
                   <Button alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#btnHome" prefHeight="40.0" prefWidth="188.0" style="-fx-background-color: #3E606F;" text="Home" textFill="WHITE">

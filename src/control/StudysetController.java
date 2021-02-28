@@ -40,6 +40,9 @@ public class StudysetController {
     private VBox vbox;
 
     @FXML
+    private Label masteryLabel;
+
+    @FXML
     void editStudyset() {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../view/editStudyset.fxml"));
@@ -100,6 +103,8 @@ public class StudysetController {
             student.setMastery(Mastery.UNKNOWN);
         }
         currentStudyset.setMastery(currentStudyset.calcMastery());
+
+        //TODO update mastery of all students in current studyset in DB
 
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource("../view/studyset.fxml"));
@@ -231,7 +236,8 @@ public class StudysetController {
     void deleteStudyset(ActionEvent event) throws IOException {
 
         studysets.remove(currentStudyset);
-        //TODO remove from DB
+
+        //TODO remove current studyset from DB
 
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource("../view/overview.fxml"));
@@ -271,6 +277,10 @@ public class StudysetController {
                     masteryImg.setImage(masteredImg);
                 }
             }
+
+            studyset.setMastery(studyset.calcMastery());
+            String masteryLabelText = String.format("%.0f", studyset.getMastery());
+            masteryLabel.setText("Lernstand: " + masteryLabelText + "%");
 
             hbox.setSpacing(10);
             hbox.setMinSize(446, 40);
