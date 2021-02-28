@@ -1,6 +1,5 @@
 package control;
 
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
@@ -11,7 +10,6 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
@@ -25,10 +23,18 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Vector;
 
+/**
+ * Der Controller für die Lernset-Ansicht
+ * <p>
+ * Dient als Controller für die View studyset.fxml
+ *
+ * @author Aladin Boudouda
+ *
+ */
 public class StudysetController {
 
-    public Vector<Studyset> studysets;
-    public Studyset currentStudyset;
+    private Vector<Studyset> studysets;
+    private Studyset currentStudyset;
 
     @FXML
     private TextField searchbar;
@@ -42,8 +48,14 @@ public class StudysetController {
     @FXML
     private Label masteryLabel;
 
+    /**
+     * Methode bei Knopfdruck "Bearbeiten"
+     * <p>
+     * Die Methode soll zur Bearbeitungssansicht führen
+     *
+     */
     @FXML
-    void editStudyset() {
+    public void editStudyset() {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../view/editStudyset.fxml"));
             Parent root1 = fxmlLoader.load();
@@ -64,12 +76,25 @@ public class StudysetController {
         System.out.println("studyset added");
     }
 
+    /**
+     * Methode bei Knopfdruck "Home"
+     * <p>
+     * Die Methode führt zu Startseite zurück
+     *
+     */
     @FXML
-    void btnHome(ActionEvent event) throws IOException {
+    public void pressHome() throws IOException {
         navigate("../view/home.fxml");
     }
 
-    public void navigate(String viewPath) throws IOException {
+    /**
+     * Methode um durch Seiten zu navigieren
+     * <p>
+     * Die Methode führt zur gegebenen Seite
+     *
+     * @param viewPath gegebene Seite
+     */
+    private void navigate(String viewPath) throws IOException {
 
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource(viewPath));
@@ -92,13 +117,25 @@ public class StudysetController {
 
     }
 
+    /**
+     * Methode bei Knopfdruck "Lernsets"
+     * <p>
+     * Die Methode soll zur Lernsets-Übersicht führen
+     *
+     */
     @FXML
-    void btnLernsets(ActionEvent event) throws IOException {
+    public void pressStudysets() throws IOException {
         navigate("../view/overview.fxml");
     }
 
+    /**
+     * Methode bei Knopfdruck "Lernstand zurücksetzen"
+     * <p>
+     * Die Methode setzt den Lernstand alles Schüler in diesem Lernset zurück
+     *
+     */
     @FXML
-    void resetMastery() throws IOException {
+    public void resetMastery() throws IOException {
         for (Student student: currentStudyset.getStudents()) {
             student.setMastery(Mastery.UNKNOWN);
         }
@@ -118,8 +155,14 @@ public class StudysetController {
         primaryStage.show();
     }
 
+    /**
+     * Methode bei Eingabe in die Suchleiste
+     * <p>
+     * Die Methode filtert die Liste bei jeder Eingabe in die Suchleiste
+     *
+     */
     @FXML
-    public void keyTyped(KeyEvent event) {
+    public void keyTyped() {
         String text = searchbar.getText();
 
         for (int i = 0; i < vbox.getChildren().size(); i++) {
@@ -136,8 +179,14 @@ public class StudysetController {
         }
     }
 
+    /**
+     * Methode bei Knopfdruck "Quick Karteikarten"
+     * <p>
+     * Die Methode soll zum Karteikarten-Modus führen
+     *
+     */
     @FXML
-    void pressFlashcards(ActionEvent event) {
+    public void pressFlashcards() {
         if (currentStudyset.getStudents().size() == 0) {
             showAlert("Das Lernset hat gar keine Personen.");
         } else {
@@ -145,8 +194,14 @@ public class StudysetController {
         }
     }
 
+    /**
+     * Methode bei Knopfdruck "Vornamen lernen"
+     * <p>
+     * Die Methode soll zum Vornamen-Modus führen
+     *
+     */
     @FXML
-    void pressStudyFirstnames(ActionEvent event) {
+    public void pressStudyFirstnames() {
 
         currentStudyset.setMastery(currentStudyset.calcMastery());
 
@@ -159,8 +214,14 @@ public class StudysetController {
         }
     }
 
+    /**
+     * Methode bei Knopfdruck "Nachnamen lernen"
+     * <p>
+     * Die Methode soll zum Nachnamen-Modus führen
+     *
+     */
     @FXML
-    void pressStudyLastnames(ActionEvent event) {
+    public void pressStudyLastnames() {
 
         currentStudyset.setMastery(currentStudyset.calcMastery());
 
@@ -173,8 +234,14 @@ public class StudysetController {
         }
     }
 
+    /**
+     * Methode bei Knopfdruck "Auswahlmodus"
+     * <p>
+     * Die Methode soll zum Auswahl-Modus führen
+     *
+     */
     @FXML
-    void pressAssign(ActionEvent event) {
+    public void pressAssign() {
 
         currentStudyset.setMastery(currentStudyset.calcMastery());
 
@@ -185,6 +252,13 @@ public class StudysetController {
         }
     }
 
+    /**
+     * Methode für Pop-ups
+     * <p>
+     * Die Methode öffnet ein Pop-up mit dem gegebenen Text
+     *
+     * @param message Pop-up Nachricht
+     */
     private void showAlert(String message) {
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle("Warnung...");
@@ -194,7 +268,13 @@ public class StudysetController {
         alert.show();
     }
 
-    void startFlashcards() {
+    /**
+     * Methode um den Karteikarten-Modus zu starten
+     * <p>
+     * Die Methode startet das Karteikarten-Fenster
+     *
+     */
+    private void startFlashcards() {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../view/flashcards.fxml"));
             Parent root1 = fxmlLoader.load();
@@ -213,7 +293,15 @@ public class StudysetController {
         }
     }
 
-    void startStudyMode(StudyMode mode) {
+    /**
+     * Methode um einen Lern-Modus zu starten
+     * <p>
+     * Die Methode startet das je nach angegebenen Modus den Vor-,
+     * Nachnamen oder Multiple-Choice-Modus
+     *
+     * @param mode zu startender Modus
+     */
+    private void startStudyMode(StudyMode mode) {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../view/study.fxml"));
             Parent root1 = fxmlLoader.load();
@@ -232,8 +320,14 @@ public class StudysetController {
         }
     }
 
+    /**
+     * Methode um das aktuelle Lernset zu löschen
+     * <p>
+     * Die Methode löscht das aktuelle Lernset aus dem Programm und aus der Datenbank
+     *
+     */
     @FXML
-    void deleteStudyset(ActionEvent event) throws IOException {
+    private void deleteStudyset() throws IOException {
 
         studysets.remove(currentStudyset);
 
@@ -251,6 +345,15 @@ public class StudysetController {
         primaryStage.show();
     }
 
+    /**
+     * Methode um die Lernsets zu initialisieren
+     * <p>
+     * Die Methode übergibt dieser Klasse als Parameter
+     * die Lernsets und das aktuelle Lernset mit
+     *
+     * @param studysets sammlung von allen Lernsets
+     * @param studyset das aktuelle lernset
+     */
     public void initData(Vector<Studyset> studysets, Studyset studyset) throws IOException {
 
         Image masteredImg = new Image(new FileInputStream("./src/assets/mastered.png"));
@@ -274,12 +377,8 @@ public class StudysetController {
 
             switch (student.getMastery()) {
                 case UNKNOWN -> masteryImg.setImage(unknownImg);
-                case KNOWN -> {
-                    masteryImg.setImage(knownImg);
-                }
-                case MASTERED -> {
-                    masteryImg.setImage(masteredImg);
-                }
+                case KNOWN -> masteryImg.setImage(knownImg);
+                case MASTERED -> masteryImg.setImage(masteredImg);
             }
 
             studyset.setMastery(studyset.calcMastery());
@@ -312,11 +411,25 @@ public class StudysetController {
         }
     }
 
-    void deleteStudysetFromDB(Studyset studyset) {
+    /**
+     * Methode um Lernset in der Datenbank zu löschen
+     * <p>
+     * Die Methode soll das aktuelle Lernset in der Datenbank zu löschen
+     *
+     * @param studyset Lernset, dass man aktualisieren will
+     */
+    private void deleteStudysetFromDB(Studyset studyset) {
         //TODO remove current studyset from DB
     }
 
-    void updateDB(Studyset studyset) {
+    /**
+     * Methode um Lernset in der Datenbank zu aktualisieren
+     * <p>
+     * Die Methode soll das aktuelle Lernset in der Datenbank aktualisieren
+     *
+     * @param studyset Lernset, dass man aktualisieren will
+     */
+    private void updateDB(Studyset studyset) {
         //TODO update mastery of all students of current studyset in DB
         //iterate through students of studyset and update student's mastery in DB
     }

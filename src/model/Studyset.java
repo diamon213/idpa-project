@@ -1,6 +1,5 @@
 package model;
 
-import java.util.ArrayList;
 import java.util.UUID;
 import java.util.Vector;
 
@@ -11,7 +10,6 @@ import java.util.Vector;
  * @author Aladin Boudouda
  *
  */
-
 public class Studyset {
     private final UUID studysetUUID;
     private String studysetName;

@@ -11,7 +11,6 @@ import java.util.UUID;
  * @author Aladin Boudouda
  *
  */
-
 public class Student {
     private final UUID studentUUID;
     private String firstName;

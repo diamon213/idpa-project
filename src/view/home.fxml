@@ -12,7 +12,7 @@
    <children>
       <AnchorPane maxHeight="500.0" maxWidth="600.0" minHeight="425.0" minWidth="436.0" prefHeight="426.0" prefWidth="484.0" style="-fx-background-color: #242429;">
          <children>
-            <Button fx:id="recent" alignment="BOTTOM_LEFT" defaultButton="true" layoutX="82.0" layoutY="85.0" mnemonicParsing="false" onAction="#pressButton" prefHeight="127.0" prefWidth="302.0" style="-fx-background-color: #91AA9D;" text="(Most recent class)">
+            <Button fx:id="recent" alignment="BOTTOM_LEFT" defaultButton="true" layoutX="82.0" layoutY="85.0" mnemonicParsing="false" prefHeight="127.0" prefWidth="302.0" style="-fx-background-color: #91AA9D;" text="(Most recent class)">
                <font>
                   <Font size="24.0" />
                </font></Button>

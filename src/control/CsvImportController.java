@@ -1,6 +1,5 @@
 package control;
 
-import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -22,6 +21,14 @@ import java.util.Vector;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+/**
+ * Der Controller für das CSV-Import-Fenster
+ * <p>
+ * Dient als Controller für die View csvImport.fxml
+ *
+ * @author Aladin Boudouda
+ *
+ */
 public class CsvImportController {
 
     public Vector<Studyset> studysets;
@@ -29,7 +36,14 @@ public class CsvImportController {
     public TextField fileTextField;
     public TextField nameTextField;
 
-    public void pressFilechooser(ActionEvent event) {
+    /**
+     * Methode bei Knopfdruck des Filechoosers
+     * <p>
+     * Die Methode öffnet den System Filemanager
+     * und füllt den Dateipfad der gewählten Datei in das Textfeld
+     *
+     */
+    public void pressFilechooser() {
         FileChooser fileChooser = new FileChooser();
         fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("CSV Dateien", "*.csv"));
         File f = fileChooser.showOpenDialog(null);
@@ -39,12 +53,23 @@ public class CsvImportController {
         }
     }
 
+    /**
+     * Methode um das Fenster zu schliessen
+     * <p>
+     * Die Methode schliesst das momentane Fenster
+     */
     public void closeWindow() {
         Stage stage = (Stage) fileTextField.getScene().getWindow();
         stage.close();
     }
 
-    public void pressOk(ActionEvent event) throws FileNotFoundException {
+    /**
+     * Methode bei "OK" Knopfdruck
+     * <p>
+     * Die Methode extrahiert die Eingaben in die Formularfelder
+     * und speichert diese in die Datenbank ab
+     */
+    public void pressOk() throws FileNotFoundException {
         if (fileTextField.getText().isEmpty()) {
             showAlert(fileTextField.getScene().getWindow(),"Bitte geben Sie eine CSV Datei ein.");
             return;
@@ -85,6 +110,14 @@ public class CsvImportController {
         lockImport();
     }
 
+    /**
+     * Methode für Pop-ups
+     * <p>
+     * Die Methode öffnet ein Pop-up mit dem gegebenen Text
+     *
+     * @param owner das momentane Fenster
+     * @param message Pop-up Nachricht
+     */
     private void showAlert(Window owner, String message) {
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle("Eingabefehler");
@@ -93,7 +126,13 @@ public class CsvImportController {
         alert.initOwner(owner);
         alert.show();
     }
-
+    /**
+     * Methode um die Lernsets zu initialisieren
+     * <p>
+     * Die Methode übergibt dieser Klasse als Parameter die Lernsets mit
+     *
+     * @param studysets die mitgegebenen Lernsets
+     */
     public void initData(Vector<Studyset> studysets) {
         this.studysets = studysets;
 
@@ -105,7 +144,13 @@ public class CsvImportController {
                 "-fx-background-color:  #3c3c44");
     }
 
-    public void lockImport() {
+    /**
+     * Methode um den Import abzuschliessen
+     * <p>
+     * Die Methode führt zum vorherigen Fenster
+     *
+     */
+    private void lockImport() {
         try {
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(getClass().getResource("../view/overview.fxml"));
@@ -117,15 +162,21 @@ public class CsvImportController {
             controller.initData(studysets);
 
             stage.setScene(new Scene(root));
-            System.out.println("LESGO");
             closeWindow();
 
         } catch (Exception e) {
-            System.out.println("OOF");
+            e.printStackTrace();
         }
     }
 
-    void saveToDB(Studyset studyset) {
+    /**
+     * Methode um Lernset in der Datenbank zu speichern
+     * <p>
+     * Die Methode soll das aktuelle Lernset in der Datenbank speichern
+     *
+     * @param studyset Lernset, dass man speichern will
+     */
+    private void saveToDB(Studyset studyset) {
         //TODO add studyset to DB
     }
 }

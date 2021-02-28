@@ -1,7 +1,6 @@
 package control;
 
 import javafx.collections.FXCollections;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
@@ -27,13 +26,21 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.util.Vector;
 
+/**
+ * Der Controller für die Ansicht beim Bearbeiten eines Lernsets
+ * <p>
+ * Dient als Controller für die View editStudyset.fxml
+ *
+ * @author Aladin Boudouda
+ *
+ */
 public class EditStudysetController {
 
-    public String[] arr = {"Frau", "Herr", "Andere"};
-    public Studyset studyset;
-    public Vector<Studyset> studysets;
-    public String scene;
-    public Image addImage;
+    private final String[] arr = {"Frau", "Herr", "Andere"};
+    private Studyset studyset;
+    private Vector<Studyset> studysets;
+    private String scene;
+    private Image addImage;
 
     @FXML
     private TextField studysetNameTextfield;
@@ -41,11 +48,25 @@ public class EditStudysetController {
     @FXML
     private VBox vbox;
 
+
+    /**
+     * Methode bei Knopfdruck Schüler hinzufügen
+     * <p>
+     * Die Methode fügt einen neuen leeren Schüler hinzu
+     *
+     */
     @FXML
-    public void pressAdd(ActionEvent event) throws FileNotFoundException {
+    public void pressAdd() throws FileNotFoundException {
         addNewPerson(null);
     }
 
+    /**
+     * Methode um der Schülerliste Schüler hinzuzufügen
+     * <p>
+     * Die Methode fügt den gegebenen Schüler der Liste hinzu
+     *
+     * @param student gegebener Schüler
+     */
     public void addNewPerson(Student student) throws FileNotFoundException {
         HBox hbox = new HBox();
 
@@ -60,7 +81,7 @@ public class EditStudysetController {
 
         TextField firstnameTextfield = new TextField();
         TextField lastnameTextfield = new TextField();
-        ChoiceBox salutationChoicebox = new ChoiceBox(FXCollections.observableArrayList(arr));
+        ChoiceBox<String> salutationChoicebox = new ChoiceBox<>(FXCollections.observableArrayList(arr));
 
         ImageView trash = new ImageView(new Image(new FileInputStream("src/assets/delete.png")));
 
@@ -99,7 +120,7 @@ public class EditStudysetController {
                 try {
                     picture.setImage(new Image(new FileInputStream(f.getAbsolutePath())));
                 } catch (FileNotFoundException e) {
-                    System.out.println("File not found");
+                    e.printStackTrace();
                 }
             }
         });
@@ -141,8 +162,14 @@ public class EditStudysetController {
         vbox.getChildren().add(hbox);
     }
 
+    /**
+     * Methode um Lernset im Programm zu speichern
+     * <p>
+     * Die Methode speichert alle Schüler ins Lernset
+     *
+     */
     @FXML
-    void saveStudyset(ActionEvent event) {
+    private void saveStudyset() {
 
         if (studysetNameTextfield.getText().isBlank()) {
             showAlert(vbox.getScene().getWindow(),"Bitte geben Sie einen validen Namen für das Lernset ein.");
@@ -196,6 +223,14 @@ public class EditStudysetController {
         lockEdit(scene);
     }
 
+    /**
+     * Methode für Pop-ups
+     * <p>
+     * Die Methode öffnet ein Pop-up mit dem gegebenen Text
+     *
+     * @param owner das momentane Fenster
+     * @param message Pop-up Nachricht
+     */
     private void showAlert(Window owner, String message) {
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle("Eingabefehler");
@@ -205,7 +240,14 @@ public class EditStudysetController {
         alert.show();
     }
 
-    public void lockEdit(String scene) {
+    /**
+     * Methode um die View zu verlassen
+     * <p>
+     * Die Methode schliesst das aktuelle Fenster
+     *
+     * @param scene View zu der man zurückkehren möchte
+     */
+    private void lockEdit(String scene) {
         try {
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(getClass().getResource(scene));
@@ -231,28 +273,58 @@ public class EditStudysetController {
 
             localStage.close();
         } catch (Exception e) {
-            System.out.println("OOF");
+            e.printStackTrace();
         }
 
     }
 
-    void initTable() throws FileNotFoundException {
+    /**
+     * Methode um die Schülerliste zu initialisieren
+     * <p>
+     * Die fügt alle Schüler zur Schülerliste hinzu
+     *
+     */
+    private void initTable() throws FileNotFoundException {
         for (Student student : studyset.getStudents()) {
             addNewPerson(student);
         }
     }
 
-    void setTextFieldStyle(TextField textField) {
+    /**
+     * Methode um den Style der Textfelder zu setzen
+     * <p>
+     * Die Methode weist dem gegebenen Textfeld den Style fürs GUI zu
+     *
+     * @param textField das zu ändernde Textfeld
+     */
+    private void setTextFieldStyle(TextField textField) {
         textField.setStyle("" +
                 "-fx-text-fill: white;" +
                 "-fx-background-color:  #3c3c44");
     }
 
-    void setLabelStyle(Label label) {
+    /**
+     * Methode um den Style der Label zu setzen
+     * <p>
+     * Die Methode weist dem gegebenen Label den Style fürs GUI zu
+     *
+     * @param label das zu ändernde Label
+     */
+    private void setLabelStyle(Label label) {
         label.setStyle("-fx-text-fill: white");
     }
 
-    void initData(Vector<Studyset> studysets, Studyset studyset, String scene) throws FileNotFoundException {
+    /**
+     * Methode um die Lernsets zu initialisieren
+     * <p>
+     * Die Methode übergibt dieser Klasse als Parameter die Lernsets,
+     * das aktuelle Lernset und das vorherige Fenster mit
+     *
+     * @param studysets sammlung von allen Lernsets
+     * @param studyset das aktuelle lernset
+     * @param scene das vorherige Fenster
+     */
+    public void initData(Vector<Studyset> studysets, Studyset studyset, String scene) throws FileNotFoundException {
         this.studysets = studysets;
         this.studyset = studyset;
         this.scene = scene;
@@ -265,8 +337,14 @@ public class EditStudysetController {
             studysetNameTextfield.setText(studyset.getStudysetName());
         }
     }
-
-    void updateDB(Studyset studyset) {
+    /**
+     * Methode um Lernset in der Datenbank zu aktualisieren
+     * <p>
+     * Die Methode soll das aktuelle Lernset in der Datenbank aktualisieren
+     *
+     * @param studyset Lernset, dass man aktualisieren will
+     */
+    private void updateDB(Studyset studyset) {
         //TODO add / update studyset in DB
         //check if studyset already is in DB
         //if yes -> update studyset in DB

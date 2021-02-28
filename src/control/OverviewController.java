@@ -1,6 +1,5 @@
 package control;
 
-
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -9,7 +8,6 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
-import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.stage.Modality;
@@ -19,9 +17,17 @@ import model.Studyset;
 import java.io.IOException;
 import java.util.Vector;
 
+/**
+ * Der Controller für die Übersicht der Lernsets
+ * <p>
+ * Dient als Controller für die View overview.fxml
+ *
+ * @author Aladin Boudouda
+ *
+ */
 public class OverviewController {
 
-    public Vector<Studyset> studysets;
+    private Vector<Studyset> studysets;
 
 
     @FXML
@@ -30,10 +36,13 @@ public class OverviewController {
     @FXML
     public TextField searchbar = null;
 
-    @FXML
-    public Button asd = null;
-
-    public void btnHome(ActionEvent event) throws IOException {
+    /**
+     * Methode bei Knopfdruck "Home"
+     * <p>
+     * Die Methode führt zu Startseite zurück
+     *
+     */
+    public void pressHome() throws IOException {
 
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource("../view/home.fxml"));
@@ -47,15 +56,13 @@ public class OverviewController {
         primaryStage.show();
     }
 
-    public void btnLernsets(ActionEvent event) throws IOException {
-        System.out.println("Lernsets");
-        Scene lernsetScene = new Scene(FXMLLoader.load(getClass().getResource("../view/overview.fxml")));
-        Stage primaryStage = (Stage) vbox.getScene().getWindow();
-        primaryStage.setScene(lernsetScene);
-        primaryStage.show();
-    }
-
-    public void pressAdd(ActionEvent event) {
+    /**
+     * Methode bei Knopfdruck "Selber zusammenstellen"
+     * <p>
+     * Die Methode führt zur Lernset-Zusammenstellung
+     *
+     */
+    public void pressAdd() {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../view/editStudyset.fxml"));
             Parent root1 = fxmlLoader.load();
@@ -70,11 +77,17 @@ public class OverviewController {
             stage.initOwner(vbox.getScene().getWindow());
             stage.show();
         } catch (Exception e) {
-            System.out.println("Cant load window");
+            e.printStackTrace();
         }
     }
 
-    public void pressImport(ActionEvent event) {
+    /**
+     * Methode bei Knopfdruck "Aus CSV importieren"
+     * <p>
+     * Die Methode führt zur CSV-Import-Seite
+     *
+     */
+    public void pressImport() {
 
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../view/csvImport.fxml"));
@@ -90,13 +103,17 @@ public class OverviewController {
             stage.initOwner(vbox.getScene().getWindow());
             stage.show();
         } catch (Exception e) {
-            System.out.println("Cant load window");
+            e.printStackTrace();
         }
-
-        System.out.println("class added");
     }
 
-    public void keyTyped(KeyEvent event) {
+    /**
+     * Methode bei Eingabe in die Suchleiste
+     * <p>
+     * Die Methode filtert die Liste bei jeder Eingabe in die Suchleiste
+     *
+     */
+    public void keyTyped() {
         String text = searchbar.getText();
 
         for (int i = 0; i < vbox.getChildren().size(); i++) {
@@ -111,7 +128,14 @@ public class OverviewController {
         }
     }
 
-    public void initVbox() {
+    /**
+     * Methode um die Lernset-Liste zu initialisieren
+     * <p>
+     * Die Methode erstellt für jedes Lernset einen Knopf,
+     * der auch zu diesem Lernset führt
+     *
+     */
+    private void initVbox() {
         Font font = new Font("System", 25);
 
         searchbar.setStyle("" +
@@ -138,13 +162,27 @@ public class OverviewController {
         }
     }
 
+    /**
+     * Methode um die Lernsets zu initialisieren
+     * <p>
+     * Die Methode übergibt dieser Klasse als Parameter
+     * die Lernsets mit
+     *
+     * @param studysets sammlung von allen Lernsets
+     */
     public void initData(Vector<Studyset> studysets) {
         this.studysets = studysets;
         initVbox();
     }
 
+    /**
+     * Methode bei Knopfdruck eines Lernsets
+     * <p>
+     * Die Methode soll zum angeklickten Lernset führen
+     *
+     * @param studyset angeklicktes Lernset
+     */
     public void pressStudyset(Studyset studyset) throws IOException {
-        System.out.println(studyset.getStudysetName());
 
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource("../view/studyset.fxml"));

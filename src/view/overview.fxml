@@ -28,7 +28,7 @@
                         <Insets bottom="50.0" left="15.0" top="30.0" />
                      </padding>
                   </Label>
-                  <Button alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#btnHome" prefHeight="40.0" prefWidth="188.0" style="-fx-background-color: #3E606F;" text="Home" textFill="WHITE">
+                  <Button alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#pressHome" prefHeight="40.0" prefWidth="188.0" style="-fx-background-color: #3E606F;" text="Home" textFill="WHITE">
                      <font>
                         <Font size="22.0" />
                      </font></Button>

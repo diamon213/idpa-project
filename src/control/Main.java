@@ -5,16 +5,30 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import model.Mastery;
-import model.Student;
 import model.Studyset;
 
 import java.util.Vector;
 
+/**
+ * Die Main-Klasse der Applikation
+ * <p>
+ * Die Applikation ruft beim Start diese Klasse auf
+ *
+ * @author Aladin Boudouda
+ *
+ */
 public class Main extends Application {
 
-    public Vector<Studyset> studysets;
+    private Vector<Studyset> studysets;
 
+    /**
+     * Startet das GUI
+     *<p>
+     * Die Methode initialisiert zu erst die Daten von der Datenbank
+     * und startet dann das JavaFX GUI
+     *
+     * @param primaryStage das Hauptfenster
+     */
     @Override
     public void start(Stage primaryStage) throws Exception{
 
@@ -34,28 +48,25 @@ public class Main extends Application {
 
     }
 
-    public void initDataFromDB() {
+    /**
+     * Initialisiert die Daten von der Datenbank
+     *<p>
+     * Es wird eine Verbindung zu Datenbank hergestellt und die Daten werden
+     * von der Datenbank abgerufen
+     *
+     */
+    private void initDataFromDB() {
         //TODO initialize data from DB or create one
         studysets = new Vector<>();
-
-        /*Studyset recentStudyset = new Studyset("G4b");
-        recentStudyset.setMostRecent(true);
-
-        studysets.add(recentStudyset);
-        studysets.add(new Studyset("I2a"));
-        studysets.add(new Studyset("H2a"));
-        studysets.add(new Studyset("I1b"));
-
-        studysets.get(0).setMostRecent(true);
-
-        studysets.get(0).addStudent(new Student("Aladin", "Boudouda", "i3a", "Herr", Mastery.KNOWN));
-        studysets.get(0).addStudent(new Student("Tenzin", "Leduk", "i3a", "Herr", Mastery.MASTERED));
-        studysets.get(0).addStudent(new Student("Andrej", "Klimov", "i3a", "Herr", Mastery.UNKNOWN));
-        */
     }
 
 
-
+    /**
+     * Main Methode der Applikation
+     *<p>
+     * startet die Applikation über JavaFX
+     *
+     */
     public static void main(String[] args) {
         launch(args);
     }

@@ -1,6 +1,5 @@
 package control;
 
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
@@ -15,7 +14,14 @@ import model.Studyset;
 import java.io.IOException;
 import java.util.Vector;
 
-
+/**
+ * Der Controller für die Ansicht im Karteikarten Modus
+ * <p>
+ * Dient als Controller für die View home.fxml
+ *
+ * @author Aladin Boudouda
+ *
+ */
 public class HomeController {
 
     public Vector<Studyset> studysets;
@@ -24,23 +30,14 @@ public class HomeController {
     private Button recent;
 
     @FXML
-    private Button recent1;
-
-    @FXML
-    private Button recent2;
-
-    @FXML
-    private Button recent3;
-
-    @FXML
     private HBox hbox;
 
-    public void pressButton(ActionEvent event) {
-        System.out.println(studysets.get(0).getStudysetName());
-        recent.setText("Hallo");
-        System.out.println(recent.getText());
-    }
-
+    /**
+     * Methode bei Knopfdruck "Lernsets"
+     * <p>
+     * Die Methode zur Lernsets-Übersicht führen
+     *
+     */
     public void pressLernsets() throws IOException {
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource("../view/overview.fxml"));
@@ -54,18 +51,24 @@ public class HomeController {
         primaryStage.show();
     }
 
-    public void initStartpage() {
+    /**
+     * Methode um Startseite zu initialisieren
+     * <p>
+     * Die Methode soll dafür sorgen, dass
+     * die Startseite richtig aufgebaut wird
+     *
+     */
+    private void initStartpage() {
         int counter = 0;
 
         if (studysets.size() == 0) {
-            System.out.println("elo");
             recent.setText("Neues Lernset...");
             recent.setPrefHeight(250);
             recent.setOnAction(ActionEvent -> {
                 try {
                     pressLernsets();
                 } catch (IOException e) {
-                    System.out.println("Can't open Lernsets");
+                    e.printStackTrace();
                 }
             });
             //TODO help import or create set
@@ -75,12 +78,11 @@ public class HomeController {
                     studyset.setMastery(studyset.calcMastery());
                     String percentage = String.format("%.0f", studyset.getMastery());
                     recent.setText(studyset.getStudysetName() + " " + percentage + "%" );
-                    System.out.println(studyset.getMastery());
                     recent.setOnAction(ActionEvent -> {
                         try {
                             pressStudyset(studyset);
                         } catch (IOException e) {
-                            System.out.println("bruh");
+                            e.printStackTrace();
                         }
                     });
                     counter++;
@@ -91,12 +93,11 @@ public class HomeController {
                         tempStudyset.setMastery(tempStudyset.calcMastery());
                         String percentage = String.format("%.0f", tempStudyset.getMastery());
                         recent.setText(tempStudyset.getStudysetName() + " " + percentage + "%" );
-                        System.out.println(studyset.getMastery());
                         recent.setOnAction(ActionEvent -> {
                             try {
                                 pressStudyset(tempStudyset);
                             } catch (IOException e) {
-                                System.out.println("bruh");
+                                e.printStackTrace();
                             }
                         });
                         counter++;
@@ -115,7 +116,7 @@ public class HomeController {
                             try {
                                 pressStudyset(tempStudyset);
                             } catch (IOException e) {
-                                System.out.println("cant open window" + tempStudyset.getStudysetName());
+                                e.printStackTrace();
                             }
                         });
                         hbox.getChildren().add(button);
@@ -127,6 +128,13 @@ public class HomeController {
         }
     }
 
+    /**
+     * Methode bei Knopfdruck eines Lernsets
+     * <p>
+     * Die Methode zum angeklickten Lernset führen
+     *
+     * @param studyset angeklicktes Lernset
+     */
     public void pressStudyset(Studyset studyset) throws IOException {
 
         FXMLLoader loader = new FXMLLoader();
@@ -141,6 +149,14 @@ public class HomeController {
         primaryStage.show();
     }
 
+    /**
+     * Methode um die Lernsets zu initialisieren
+     * <p>
+     * Die Methode übergibt dieser Klasse als Parameter
+     * die Lernsets mit
+     *
+     * @param studysets sammlung von allen Lernsets
+     */
     public void initData(Vector<Studyset> studysets) {
         this.studysets = studysets;
         initStartpage();
