@@ -260,6 +260,10 @@ public class StudysetController {
         this.studysets = studysets;
         this.currentStudyset = studyset;
         titleLabel.setText(studyset.getStudysetName());
+        searchbar.setStyle("" +
+                "-fx-text-fill: white;" +
+                "-fx-background-color:  #3c3c44");
+
         for (Student student : studyset.getStudents()) {
 
             HBox hbox = new HBox();
@@ -280,7 +284,7 @@ public class StudysetController {
 
             studyset.setMastery(studyset.calcMastery());
             String masteryLabelText = String.format("%.0f", studyset.getMastery());
-            masteryLabel.setText("Lernstand: " + masteryLabelText + "%");
+            masteryLabel.setText(masteryLabelText + "%");
 
             hbox.setSpacing(10);
             hbox.setMinSize(446, 40);
@@ -302,10 +306,6 @@ public class StudysetController {
 
             HBox.setMargin(masteryImg, new Insets(10, 20, 0, 0));
             HBox.setMargin(salutation, new Insets(0, 0, 0, 30));
-
-            searchbar.setStyle("" +
-                    "-fx-text-fill: white;" +
-                    "-fx-background-color:  #3c3c44");
 
             vbox.setSpacing(5);
             vbox.getChildren().add(hbox);

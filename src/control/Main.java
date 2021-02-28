@@ -10,10 +10,7 @@ import model.Student;
 import model.Studyset;
 
 import java.util.Vector;
-/**
- * Main class of the Module
- *
- * */
+
 public class Main extends Application {
 
     public Vector<Studyset> studysets;
@@ -41,7 +38,7 @@ public class Main extends Application {
         //TODO initialize data from DB or create one
         studysets = new Vector<>();
 
-        Studyset recentStudyset = new Studyset("G4b");
+        /*Studyset recentStudyset = new Studyset("G4b");
         recentStudyset.setMostRecent(true);
 
         studysets.add(recentStudyset);
@@ -54,7 +51,9 @@ public class Main extends Application {
         studysets.get(0).addStudent(new Student("Aladin", "Boudouda", "i3a", "Herr", Mastery.KNOWN));
         studysets.get(0).addStudent(new Student("Tenzin", "Leduk", "i3a", "Herr", Mastery.MASTERED));
         studysets.get(0).addStudent(new Student("Andrej", "Klimov", "i3a", "Herr", Mastery.UNKNOWN));
+        */
     }
+
 
 
     public static void main(String[] args) {

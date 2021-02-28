@@ -21,14 +21,6 @@
          <font>
             <Font size="14.0" />
          </font></TextField>
-      <Label fx:id="titleLabel" layoutY="17.0" prefHeight="79.0" prefWidth="286.0" text="I3a" textFill="WHITE">
-         <font>
-            <Font size="32.0" />
-         </font>
-         <padding>
-            <Insets left="30.0" top="10.0" />
-         </padding>
-      </Label>
       <HBox layoutY="95.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="20.0" prefWidth="462.0" spacing="10.0">
          <children>
             <Label prefHeight="20.0" prefWidth="49.0" text="Anrede" textFill="WHITE">
@@ -38,7 +30,7 @@
             </Label>
             <Label contentDisplay="CENTER" prefHeight="20.0" prefWidth="126.0" text="Vorname" textFill="WHITE" />
             <Label prefHeight="20.0" prefWidth="134.0" text="Nachname" textFill="WHITE" />
-            <Label fx:id="masteryLabel" prefHeight="18.0" prefWidth="82.0" text="Lernstand" textFill="WHITE" />
+            <Label prefHeight="18.0" prefWidth="82.0" text="Lernstand" textFill="WHITE" />
          </children>
       </HBox>
       <Button alignment="CENTER" contentDisplay="CENTER" graphicTextGap="0.0" layoutX="390.0" layoutY="45.0" mnemonicParsing="false" onAction="#deleteStudyset" prefHeight="34.0" prefWidth="69.0" style="-fx-background-color: #242429;" text="Löschen" textFill="WHITE" underline="true">
@@ -58,15 +50,12 @@
          <children>
             <VBox maxHeight="500.0" maxWidth="243.0" minHeight="425.0" minWidth="166.0" prefHeight="426.0" prefWidth="190.0" spacing="1.0">
                <children>
-                  <Label prefHeight="145.0" prefWidth="172.0" text="Lernsets" textFill="WHITE">
+                  <Label fx:id="titleLabel" prefHeight="145.0" prefWidth="190.0" text="I3a" textFill="WHITE">
                      <font>
                         <Font name="System Bold" size="38.0" />
                      </font>
-                     <VBox.margin>
-                        <Insets />
-                     </VBox.margin>
                      <padding>
-                        <Insets bottom="40.0" left="20.0" top="30.0" />
+                        <Insets bottom="20.0" left="30.0" top="10.0" />
                      </padding>
                   </Label>
                   <Button alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#btnHome" prefHeight="40.0" prefWidth="188.0" style="-fx-background-color: #3E606F;" text="Home" textFill="WHITE">
@@ -100,5 +89,13 @@
             </VBox>
          </children>
       </AnchorPane>
+      <Label fx:id="masteryLabel" alignment="CENTER" layoutX="-14.0" layoutY="-1.0" maxHeight="-Infinity" prefHeight="79.0" prefWidth="162.0" text="100%" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="38.0" />
+         </font>
+         <padding>
+            <Insets bottom="40.0" left="20.0" top="30.0" />
+         </padding>
+      </Label>
    </children>
 </AnchorPane>
