@@ -13,7 +13,7 @@ import java.util.Vector;
  */
 
 public class Studyset {
-    private UUID studysetUUID;
+    private final UUID studysetUUID;
     private String studysetName;
     private Vector<Student> students;
     private int mastery;

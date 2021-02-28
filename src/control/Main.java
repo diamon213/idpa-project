@@ -10,7 +10,10 @@ import model.Student;
 import model.Studyset;
 
 import java.util.Vector;
-
+/**
+ * Main class of the Module
+ *
+ * */
 public class Main extends Application {
 
     public Vector<Studyset> studysets;

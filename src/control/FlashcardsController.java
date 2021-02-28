@@ -126,7 +126,7 @@ public class FlashcardsController {
 
         if (currentStudent.getImage() == null) {
             try {
-                studentImage.setImage(new Image(new FileInputStream("src/assets/file.png")));
+                studentImage.setImage(new Image(new FileInputStream("src/assets/placeholder.png")));
                 centerImage();
             } catch (FileNotFoundException f) {
                 System.out.println("Bruh");

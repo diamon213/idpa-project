@@ -80,7 +80,7 @@ public class HomeController {
                         try {
                             pressStudyset(studyset);
                         } catch (IOException e) {
-                            System.out.println("bruh");;
+                            System.out.println("bruh");
                         }
                     });
                     counter++;
@@ -96,7 +96,7 @@ public class HomeController {
                             try {
                                 pressStudyset(tempStudyset);
                             } catch (IOException e) {
-                                System.out.println("bruh");;
+                                System.out.println("bruh");
                             }
                         });
                         counter++;

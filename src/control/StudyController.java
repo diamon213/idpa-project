@@ -187,7 +187,7 @@ public class StudyController {
             imageView.setImage(currentStudent.getImage());
         } else {
             try {
-                imageView.setImage(new Image(new FileInputStream("")));
+                imageView.setImage(new Image(new FileInputStream("src/assets/placeholder.png")));
             } catch (FileNotFoundException f) {
                 System.out.println("File not found");
             }

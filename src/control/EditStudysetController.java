@@ -34,7 +34,6 @@ public class EditStudysetController {
     public Vector<Studyset> studysets;
     public String scene;
     public Image addImage;
-    public Image placeholder;
 
     @FXML
     private TextField studysetNameTextfield;
@@ -79,6 +78,7 @@ public class EditStudysetController {
             lastnameTextfield.setText(student.getLastName());
 
             salutationChoicebox.getSelectionModel().select(student.getSalutation());
+
             if (student.getImage() != null) {
                 picture.setImage(student.getImage());
             }
@@ -178,9 +178,7 @@ public class EditStudysetController {
 
             Student tempStudent = new Student(firstname, lastname, tempStudysetName, salutation, mastery);
 
-            if (imageView.getImage() == addImage) {
-                tempStudent.setImage(placeholder);
-            } else {
+            if (imageView.getImage() != addImage) {
                 tempStudent.setImage(imageView.getImage());
             }
 
@@ -259,7 +257,6 @@ public class EditStudysetController {
         this.studyset = studyset;
         this.scene = scene;
         addImage = new Image(new FileInputStream("src/assets/file.png"));
-        placeholder = new Image(new FileInputStream("src/assets/placeholder.png"));
 
         setTextFieldStyle(studysetNameTextfield);
 

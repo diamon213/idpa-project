@@ -13,7 +13,7 @@ import java.util.UUID;
  */
 
 public class Student {
-    private UUID studentUUID;
+    private final UUID studentUUID;
     private String firstName;
     private String lastName;
     private String salutation;
