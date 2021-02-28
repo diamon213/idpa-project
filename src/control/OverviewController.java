@@ -114,17 +114,18 @@ public class OverviewController {
         }
     }
 
-    public void pressButton(ActionEvent event) {
-        System.out.println(studysets.size());
-    }
-
     public void initVbox() {
         Font font = new Font("System", 25);
+
+        searchbar.setStyle("" +
+                "-fx-text-fill: white;" +
+                "-fx-background-color:  #3c3c44");
 
         for (Studyset studyset : studysets) {
             Button button = new Button();
             button.setText(studyset.getStudysetName());
             button.setFont(font);
+            button.setStyle("-fx-background-color: #91AA9D");
             button.setPrefSize(400, 65);
             button.setAlignment(Pos.BASELINE_LEFT);
 

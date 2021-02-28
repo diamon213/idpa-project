@@ -3,7 +3,7 @@ package control;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
+import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -13,8 +13,6 @@ import javafx.stage.Stage;
 import model.Studyset;
 
 import java.io.IOException;
-import java.net.URL;
-import java.util.ResourceBundle;
 import java.util.Vector;
 
 
@@ -111,6 +109,8 @@ public class HomeController {
 
                         button.setPrefSize(92, 100);
                         button.setFont(font);
+                        button.setStyle("-fx-background-color: #91AA9D");
+                        button.setAlignment(Pos.BOTTOM_LEFT);
                         button.setOnAction(ActionEvent -> {
                             try {
                                 pressStudyset(tempStudyset);

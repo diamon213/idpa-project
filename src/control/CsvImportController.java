@@ -95,6 +95,13 @@ public class CsvImportController {
 
     public void initData(Vector<Studyset> studysets) {
         this.studysets = studysets;
+
+        fileTextField.setStyle("" +
+                "-fx-text-fill: white;" +
+                "-fx-background-color:  #3c3c44");
+        nameTextField.setStyle("" +
+                "-fx-text-fill: white;" +
+                "-fx-background-color:  #3c3c44");
     }
 
     public void lockImport() {

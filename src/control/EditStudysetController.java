@@ -61,10 +61,21 @@ public class EditStudysetController {
         TextField lastnameTextfield = new TextField();
         ChoiceBox salutationChoicebox = new ChoiceBox(FXCollections.observableArrayList(arr));
 
+        ImageView trash = new ImageView(new Image(new FileInputStream("src/assets/delete.png")));
+
+        setTextFieldStyle(firstnameTextfield);
+        setTextFieldStyle(lastnameTextfield);
+        salutationChoicebox.setStyle("-fx-background-color:  #91AA9D");
+
+        setLabelStyle(label1);
+        setLabelStyle(label2);
+        setLabelStyle(label3);
+
         if (student != null)  {
             firstnameTextfield.setText(student.getFirstName());
             firstnameTextfield.setAccessibleText(student.getMastery().toString());
             lastnameTextfield.setText(student.getLastName());
+
             salutationChoicebox.getSelectionModel().select(student.getSalutation());
             if (student.getImage() != null) {
                 picture.setImage(student.getImage());
@@ -73,7 +84,6 @@ public class EditStudysetController {
             firstnameTextfield.setAccessibleText("UNKNOWN");
         }
 
-        ImageView trash = new ImageView(new Image(new FileInputStream("src/assets/delete.png")));
 
         hbox.setSpacing(10);
         hbox.setPrefSize(591, 115);
@@ -218,20 +228,28 @@ public class EditStudysetController {
 
     }
 
-    public void importFromOther() {
-        //TODO import from other set
-    }
-
     void initTable() throws FileNotFoundException {
         for (Student student : studyset.getStudents()) {
             addNewPerson(student);
         }
     }
 
+    void setTextFieldStyle(TextField textField) {
+        textField.setStyle("" +
+                "-fx-text-fill: white;" +
+                "-fx-background-color:  #3c3c44");
+    }
+
+    void setLabelStyle(Label label) {
+        label.setStyle("-fx-text-fill: white");
+    }
+
     void initData(Vector<Studyset> studysets, Studyset studyset, String scene) throws FileNotFoundException {
         this.studysets = studysets;
         this.studyset = studyset;
         this.scene = scene;
+
+        setTextFieldStyle(studysetNameTextfield);
 
         if (studyset != null) {
             initTable();

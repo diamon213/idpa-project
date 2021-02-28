@@ -11,13 +11,13 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="425.0" prefWidth="650.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="control.OverviewController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="425.0" prefWidth="650.0" style="-fx-background-color: #242429;" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="control.OverviewController">
    <children>
-      <AnchorPane layoutX="462.0" maxHeight="624.0" maxWidth="216.0" minHeight="425.0" minWidth="165.0" prefHeight="426.0" prefWidth="190.0">
+      <AnchorPane layoutX="462.0" maxHeight="624.0" maxWidth="216.0" minHeight="425.0" minWidth="165.0" prefHeight="425.0" prefWidth="190.0" style="-fx-background-color: #3E606F;">
          <children>
             <VBox maxHeight="500.0" maxWidth="243.0" minHeight="425.0" minWidth="166.0" prefHeight="426.0" prefWidth="190.0" spacing="1.0">
                <children>
-                  <Label prefHeight="138.0" prefWidth="172.0" text="Lernsets">
+                  <Label prefHeight="138.0" prefWidth="172.0" text="Lernsets" textFill="WHITE">
                      <font>
                         <Font name="System Bold" size="32.0" />
                      </font>
@@ -28,23 +28,29 @@
                         <Insets bottom="50.0" left="10.0" top="30.0" />
                      </padding>
                   </Label>
-                  <Button alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#btnHome" prefHeight="40.0" prefWidth="188.0" text="Home" />
-                  <Button alignment="BASELINE_LEFT" disable="true" mnemonicParsing="false" onAction="#btnLernsets" prefHeight="40.0" prefWidth="188.0" text="Lernsets" />
+                  <Button alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#btnHome" prefHeight="40.0" prefWidth="188.0" style="-fx-background-color: #3E606F;" text="Home" textFill="WHITE">
+                     <font>
+                        <Font size="22.0" />
+                     </font></Button>
+                  <Button alignment="BASELINE_LEFT" disable="true" mnemonicParsing="false" prefHeight="40.0" prefWidth="188.0" style="-fx-background-color: #3E606F;" text="Lernsets" textFill="WHITE">
+                     <font>
+                        <Font size="22.0" />
+                     </font></Button>
                </children>
             </VBox>
          </children>
       </AnchorPane>
-      <ScrollPane fitToWidth="true" layoutY="37.0" prefHeight="388.0" prefWidth="462.0">
+      <ScrollPane fitToWidth="true" layoutY="37.0" prefHeight="390.0" prefWidth="462.0" style="-fx-background-color: #242429;">
          <content>
-            <VBox fx:id="vbox" fillWidth="false" prefHeight="388.0" prefWidth="447.0" spacing="10.0">
+            <VBox fx:id="vbox" fillWidth="false" prefHeight="395.0" prefWidth="447.0" spacing="10.0" style="-fx-background-color: #242429;">
                <padding>
                   <Insets bottom="10.0" left="25.0" top="10.0" />
                </padding>
             </VBox>
          </content>
       </ScrollPane>
-      <TextField fx:id="searchbar" layoutX="291.0" layoutY="5.0" onKeyReleased="#keyTyped" prefHeight="26.0" prefWidth="172.0" promptText="Lernset suchen" />
-      <MenuButton layoutX="24.0" layoutY="5.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="149.0" text="Lernset hinzufügen">
+      <TextField fx:id="searchbar" layoutX="283.0" layoutY="6.0" onKeyReleased="#keyTyped" prefHeight="26.0" prefWidth="172.0" promptText="Lernset suchen" style="-fx-background-color: #3c3c44;" />
+      <MenuButton layoutX="24.0" layoutY="5.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="149.0" style="-fx-background-color: #91AA9D;" text="Lernset hinzufügen">
         <items>
           <MenuItem mnemonicParsing="false" onAction="#pressImport" text="Aus CSV importieren" />
           <MenuItem mnemonicParsing="false" onAction="#pressAdd" text="Selber zusammenstellen" />

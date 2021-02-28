@@ -6,24 +6,30 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="206.0" prefWidth="395.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="control.CsvImportController">
+<AnchorPane prefHeight="206.0" prefWidth="395.0" style="-fx-background-color: #242429;" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="control.CsvImportController">
    <children>
       <TextField fx:id="fileTextField" editable="false" focusTraversable="false" layoutX="162.0" layoutY="116.0" prefHeight="26.0" prefWidth="183.0" promptText=".csv Datei anhängen" />
-      <Button fx:id="fileButton" defaultButton="true" layoutX="345.0" layoutY="116.0" mnemonicParsing="false" onAction="#pressFilechooser" prefHeight="26.0" prefWidth="30.0" text="..." />
-      <Label layoutX="27.0" layoutY="17.0" prefHeight="42.0" prefWidth="291.0" text="Klasse über .CSV Datei importieren">
+      <Button fx:id="fileButton" alignment="BOTTOM_LEFT" contentDisplay="BOTTOM" defaultButton="true" layoutX="346.0" layoutY="116.0" mnemonicParsing="false" onAction="#pressFilechooser" prefHeight="26.0" prefWidth="30.0" style="-fx-background-color: #91AA9D;" text="🗀" />
+      <Label layoutX="27.0" layoutY="17.0" prefHeight="42.0" prefWidth="291.0" text="Klasse über .CSV Datei importieren" textFill="WHITE">
          <font>
             <Font size="18.0" />
          </font>
       </Label>
-      <Button layoutX="50.0" layoutY="156.0" mnemonicParsing="false" onAction="#pressOk" prefHeight="26.0" prefWidth="143.0" text="OK" />
-      <Button cancelButton="true" layoutX="202.0" layoutY="156.0" mnemonicParsing="false" onAction="#closeWindow" prefHeight="26.0" prefWidth="143.0" text="Abbrechen" />
-      <Label layoutX="45.0" layoutY="83.0" text="Name der Klasse:">
+      <Button layoutX="54.0" layoutY="154.0" mnemonicParsing="false" onAction="#pressOk" prefHeight="38.0" prefWidth="143.0" style="-fx-background-color: #242429;" text="OK" textFill="WHITE" underline="true">
+         <font>
+            <Font size="17.0" />
+         </font></Button>
+      <Button cancelButton="true" layoutX="197.0" layoutY="154.0" mnemonicParsing="false" onAction="#closeWindow" prefHeight="26.0" prefWidth="143.0" style="-fx-background-color: #242429;" text="Abbrechen" textFill="WHITE" underline="true">
+         <font>
+            <Font size="17.0" />
+         </font></Button>
+      <Label layoutX="45.0" layoutY="83.0" text="Name der Klasse:" textFill="WHITE">
          <font>
             <Font size="14.0" />
          </font>
       </Label>
       <TextField fx:id="nameTextField" layoutX="163.0" layoutY="80.0" prefHeight="26.0" prefWidth="183.0" promptText="I3a, G1b, H2a" />
-      <Label layoutX="45.0" layoutY="116.0" text="CSV Datei:">
+      <Label layoutX="45.0" layoutY="116.0" text="CSV Datei:" textFill="WHITE">
          <font>
             <Font size="14.0" />
          </font>

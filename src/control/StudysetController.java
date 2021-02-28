@@ -16,7 +16,6 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import javafx.stage.Window;
 import model.Mastery;
 import model.Student;
 import model.StudyMode;
@@ -274,7 +273,8 @@ public class StudysetController {
             }
 
             hbox.setSpacing(10);
-            hbox.setPrefSize(446, 40);
+            hbox.setMinSize(446, 40);
+            hbox.setStyle("-fx-background-color:  #91AA9D");
 
             salutation.setPrefSize(66, 40);
 
@@ -293,6 +293,11 @@ public class StudysetController {
             HBox.setMargin(masteryImg, new Insets(10, 20, 0, 0));
             HBox.setMargin(salutation, new Insets(0, 0, 0, 30));
 
+            searchbar.setStyle("" +
+                    "-fx-text-fill: white;" +
+                    "-fx-background-color:  #3c3c44");
+
+            vbox.setSpacing(5);
             vbox.getChildren().add(hbox);
         }
     }

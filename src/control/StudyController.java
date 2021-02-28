@@ -1,7 +1,6 @@
 package control;
 
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -15,7 +14,6 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
-import javafx.stage.WindowEvent;
 import model.Mastery;
 import model.Student;
 import model.StudyMode;
@@ -236,6 +234,7 @@ public class StudyController {
             });
         }
 
+        updateProgress();
     }
 
     void decideNextStudent() {
