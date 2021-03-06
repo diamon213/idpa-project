@@ -1,9 +1,8 @@
-package control;
+package memoXD;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.image.Image;
@@ -14,8 +13,6 @@ import model.Mastery;
 import model.Student;
 import model.Studyset;
 
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Collections;
 import java.util.Vector;
@@ -67,16 +64,14 @@ public class FlashcardsController {
     public void cancelGame() {
         saveProgress();
         try {
-            FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(getClass().getResource("../view/studyset.fxml"));
+            FXMLLoader loader = new FXMLLoader(App.class.getResource("studyset.fxml"));
             Parent root = loader.load();
             Stage localStage = (Stage) flashcard.getScene().getWindow();
-            Stage stage = (Stage) localStage.getOwner();
 
             StudysetController controller = loader.getController();
             controller.initData(studysets, studyset);
 
-            stage.setScene(new Scene(root));
+            App.setRoot(root);
 
             localStage.close();
 
@@ -98,7 +93,7 @@ public class FlashcardsController {
             progress--;
             updateProgressLabels();
         } catch (ArrayIndexOutOfBoundsException e) {
-            e.printStackTrace();
+            System.out.println("Keine vorherigen Schüler");
         }
     }
 
@@ -115,7 +110,7 @@ public class FlashcardsController {
             progress++;
             updateProgressLabels();
         } catch (ArrayIndexOutOfBoundsException e) {
-            e.printStackTrace();
+            System.out.println("Keine weiteren Schüler");
         }
     }
 
@@ -183,12 +178,8 @@ public class FlashcardsController {
         studentLabel.setText(currentStudent.getName());
 
         if (currentStudent.getImage() == null) {
-            try {
-                studentImage.setImage(new Image(new FileInputStream("src/assets/placeholder.png")));
-                centerImage();
-            } catch (FileNotFoundException f) {
-                f.printStackTrace();
-            }
+            studentImage.setImage(new Image(App.class.getResourceAsStream("placeholder.png")));
+            centerImage();
         } else {
             studentImage.setImage(currentStudent.getImage());
             centerImage();

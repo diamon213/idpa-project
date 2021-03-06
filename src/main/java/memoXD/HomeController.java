@@ -1,14 +1,12 @@
-package control;
+package memoXD;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
 import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.HBox;
 import javafx.scene.text.Font;
-import javafx.stage.Stage;
 import model.Studyset;
 
 import java.io.IOException;
@@ -38,17 +36,15 @@ public class HomeController {
      * Die Methode zur Lernsets-Übersicht führen
      *
      */
-    public void pressLernsets() throws IOException {
-        FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(getClass().getResource("../view/overview.fxml"));
-        Parent root = loader.load();
-        Stage primaryStage = (Stage) recent.getScene().getWindow();
+    @FXML
+    void pressLernsets() throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("overview.fxml"));
+        Parent root = fxmlLoader.load();
 
-        OverviewController controller = loader.getController();
+        OverviewController controller = fxmlLoader.getController();
         controller.initData(studysets);
 
-        primaryStage.setScene(new Scene(root));
-        primaryStage.show();
+        App.setRoot(root);
     }
 
     /**
@@ -75,32 +71,12 @@ public class HomeController {
         } else {
             for (Studyset studyset: studysets) {
                 if (studyset.getMostRecent()) {
-                    studyset.setMastery(studyset.calcMastery());
-                    String percentage = String.format("%.0f", studyset.getMastery());
-                    recent.setText(studyset.getStudysetName() + " " + percentage + "%" );
-                    recent.setOnAction(ActionEvent -> {
-                        try {
-                            pressStudyset(studyset);
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        }
-                    });
-                    counter++;
+                    counter = setCounter(counter, studyset);
                 } else {
                     if (counter == 0) {
                         int random = (int) (Math.random() * studysets.size());
                         Studyset tempStudyset = studysets.get(random);
-                        tempStudyset.setMastery(tempStudyset.calcMastery());
-                        String percentage = String.format("%.0f", tempStudyset.getMastery());
-                        recent.setText(tempStudyset.getStudysetName() + " " + percentage + "%" );
-                        recent.setOnAction(ActionEvent -> {
-                            try {
-                                pressStudyset(tempStudyset);
-                            } catch (IOException e) {
-                                e.printStackTrace();
-                            }
-                        });
-                        counter++;
+                        counter = setCounter(counter, tempStudyset);
                     } else if (counter < 4) {
                         int random = (int) (Math.random() * studysets.size());
                         Studyset tempStudyset = studysets.get(random);
@@ -129,6 +105,29 @@ public class HomeController {
     }
 
     /**
+     * Aktualisiert den Counter
+     *<p>
+     * Die Methode aktualisiert den Zähler im GUI
+     *
+     * @param counter Zahl des Counters
+     * @param studyset das momentane Lernset
+     */
+    private int setCounter(int counter, Studyset studyset) {
+        studyset.setMastery(studyset.calcMastery());
+        String percentage = String.format("%.0f", studyset.getMastery());
+        recent.setText(studyset.getStudysetName() + " " + percentage + "%" );
+        recent.setOnAction(ActionEvent -> {
+            try {
+                pressStudyset(studyset);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
+        counter++;
+        return counter;
+    }
+
+    /**
      * Methode bei Knopfdruck eines Lernsets
      * <p>
      * Die Methode zum angeklickten Lernset führen
@@ -137,16 +136,13 @@ public class HomeController {
      */
     public void pressStudyset(Studyset studyset) throws IOException {
 
-        FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(getClass().getResource("../view/studyset.fxml"));
-        Parent root = loader.load();
-        Stage primaryStage = (Stage) hbox.getScene().getWindow();
+        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("studyset.fxml"));
+        Parent root = fxmlLoader.load();
 
-        StudysetController controller = loader.getController();
+        StudysetController controller = fxmlLoader.getController();
         controller.initData(studysets, studyset);
 
-        primaryStage.setScene(new Scene(root));
-        primaryStage.show();
+        App.setRoot(root);
     }
 
     /**
@@ -161,4 +157,5 @@ public class HomeController {
         this.studysets = studysets;
         initStartpage();
     }
+
 }

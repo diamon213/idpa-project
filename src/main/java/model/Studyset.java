@@ -67,15 +67,11 @@ public class Studyset {
     public int calcMastery() {
         mastery = 0;
         for (Student student : students) {
-
-            switch (student.getMastery()) {
-
-                case KNOWN -> {
-                    mastery += 50;
-                }
-                case MASTERED -> {
-                    mastery += 100;
-                }
+            if (student.getMastery() == Mastery.KNOWN) {
+                mastery += 50;
+            }
+            if (student.getMastery() == Mastery.MASTERED) {
+                mastery += 100;
             }
         }
         try {

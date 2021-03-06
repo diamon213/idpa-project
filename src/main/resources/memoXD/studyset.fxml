@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="425.0" prefWidth="650.0" style="-fx-background-color: #242429;" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="control.StudysetController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="425.0" prefWidth="650.0" style="-fx-background-color: #242429;" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="memoXD.StudysetController">
    <children>
       <ScrollPane fitToWidth="true" focusTraversable="false" layoutY="116.0" prefHeight="310.0" prefWidth="462.0" style="-fx-background-color: #242429;">
          <content>

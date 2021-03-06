@@ -1,11 +1,10 @@
-package control;
+package memoXD;
 
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
 import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
@@ -56,7 +55,7 @@ public class EditStudysetController {
      *
      */
     @FXML
-    public void pressAdd() throws FileNotFoundException {
+    public void pressAdd() {
         addNewPerson(null);
     }
 
@@ -67,7 +66,7 @@ public class EditStudysetController {
      *
      * @param student gegebener Schüler
      */
-    public void addNewPerson(Student student) throws FileNotFoundException {
+    public void addNewPerson(Student student) {
         HBox hbox = new HBox();
 
         ImageView picture = new ImageView(addImage);
@@ -83,7 +82,7 @@ public class EditStudysetController {
         TextField lastnameTextfield = new TextField();
         ChoiceBox<String> salutationChoicebox = new ChoiceBox<>(FXCollections.observableArrayList(arr));
 
-        ImageView trash = new ImageView(new Image(new FileInputStream("src/assets/delete.png")));
+        ImageView trash = new ImageView(new Image(App.class.getResourceAsStream("delete.png")));
 
         setTextFieldStyle(firstnameTextfield);
         setTextFieldStyle(lastnameTextfield);
@@ -113,7 +112,9 @@ public class EditStudysetController {
 
         picture.setOnMouseClicked(mouseEvent -> {
             FileChooser fileChooser = new FileChooser();
-            fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Bilddateien", "*.png", "*.jpg", "*.gif", "*.bmp"));
+            fileChooser.getExtensionFilters().add(
+                    new FileChooser.ExtensionFilter("Bilddateien", "*.png", "*.jpg", "*.gif", "*.bmp")
+            );
             File f = fileChooser.showOpenDialog(null);
 
             if (f != null) {
@@ -188,7 +189,11 @@ public class EditStudysetController {
             TextField lastnameField = (TextField) formVbox.getChildren().get(1);
             ChoiceBox salutationBox = (ChoiceBox) formVbox.getChildren().get(2);
 
-            if (firstnameField.getText().isEmpty() || lastnameField.getText().isEmpty() ||  salutationBox.getSelectionModel().getSelectedItem() == null) {
+            if (
+                    firstnameField.getText().isEmpty() ||
+                    lastnameField.getText().isEmpty() ||
+                    salutationBox.getSelectionModel().getSelectedItem() == null
+            ) {
                 showAlert(vbox.getScene().getWindow(),"Bitte füllen Sie alle Felder.");
                 return;
             }
@@ -197,12 +202,15 @@ public class EditStudysetController {
             String firstname = firstnameField.getText();
             String lastname = lastnameField.getText();
             String salutation = salutationBox.getSelectionModel().getSelectedItem().toString();
-            Mastery mastery = switch (firstnameField.getAccessibleText()) {
-                case "MASTERED" -> Mastery.MASTERED;
-                case "KNOWN" -> Mastery.KNOWN;
-                default -> Mastery.UNKNOWN;
-            };
+            Mastery mastery;
 
+            if (firstnameField.getAccessibleText().equals("MASTERED")) {
+                mastery = Mastery.MASTERED;
+            } else if (firstnameField.getAccessibleText().equals("KNOWN")) {
+                mastery = Mastery.KNOWN;
+            } else {
+                mastery = Mastery.UNKNOWN;
+            }
             Student tempStudent = new Student(firstname, lastname, tempStudysetName, salutation, mastery);
 
             if (imageView.getImage() != addImage) {
@@ -249,23 +257,21 @@ public class EditStudysetController {
      */
     private void lockEdit(String scene) {
         try {
-            FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(getClass().getResource(scene));
+            FXMLLoader loader = new FXMLLoader(App.class.getResource(scene));
             Parent root = loader.load();
             Stage localStage = (Stage) vbox.getScene().getWindow();
-            Stage stage = (Stage) localStage.getOwner();
 
-            if (scene.equals("../view/overview.fxml")) {
+            if (scene.equals("overview.fxml")) {
                 OverviewController controller = loader.getController();
                 controller.initData(studysets);
 
-                stage.setScene(new Scene(root));
+                App.setRoot(root);
 
-            } else if (scene.equals("../view/studyset.fxml")) {
+            } else if (scene.equals("studyset.fxml")) {
                 StudysetController controller = loader.getController();
                 controller.initData(studysets, studyset);
 
-                stage.setScene(new Scene(root));
+                App.setRoot(root);
 
             } else {
                 System.out.println("bad scene");
@@ -284,7 +290,7 @@ public class EditStudysetController {
      * Die fügt alle Schüler zur Schülerliste hinzu
      *
      */
-    private void initTable() throws FileNotFoundException {
+    private void initTable() {
         for (Student student : studyset.getStudents()) {
             addNewPerson(student);
         }
@@ -324,11 +330,11 @@ public class EditStudysetController {
      * @param studyset das aktuelle lernset
      * @param scene das vorherige Fenster
      */
-    public void initData(Vector<Studyset> studysets, Studyset studyset, String scene) throws FileNotFoundException {
+    public void initData(Vector<Studyset> studysets, Studyset studyset, String scene) {
         this.studysets = studysets;
         this.studyset = studyset;
         this.scene = scene;
-        addImage = new Image(new FileInputStream("src/assets/file.png"));
+        addImage = new Image(App.class.getResourceAsStream("file.png"));
 
         setTextFieldStyle(studysetNameTextfield);
 
@@ -337,6 +343,7 @@ public class EditStudysetController {
             studysetNameTextfield.setText(studyset.getStudysetName());
         }
     }
+
     /**
      * Methode um Lernset in der Datenbank zu aktualisieren
      * <p>

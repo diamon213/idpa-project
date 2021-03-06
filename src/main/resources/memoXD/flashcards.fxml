@@ -9,7 +9,7 @@
 <?import javafx.scene.text.Font?>
 
 
-<AnchorPane prefHeight="542.0" prefWidth="767.0" style="-fx-background-color: #242429;" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="control.FlashcardsController">
+<AnchorPane prefHeight="542.0" prefWidth="767.0" style="-fx-background-color: #242429;" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="memoXD.FlashcardsController">
    <children>
       <AnchorPane prefHeight="542.0" prefWidth="210.0" style="-fx-background-color: #3E606F;">
          <children>

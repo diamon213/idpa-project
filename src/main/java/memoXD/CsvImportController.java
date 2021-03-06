@@ -1,8 +1,7 @@
-package control;
+package memoXD;
 
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
@@ -88,7 +87,9 @@ public class CsvImportController {
             csv.append(text);
         }
 
-        Pattern pattern = Pattern.compile("[a-zA-Z_äÄöÖüÜß\"]{1,40};[a-zA-Z0_äÄöÖüÜß \"]{1,40};[a-zA-Z_äÄöÖüÜß \"]{1,40};;;");
+        Pattern pattern = Pattern.compile(
+                "[a-zA-Z_äÄöÖüÜß\"]{1,40};[a-zA-Z0_äÄöÖüÜß \"]{1,40};[a-zA-Z_äÄöÖüÜß \"]{1,40};;;"
+        );
         Matcher matcher = pattern.matcher(csv);
 
         Studyset studyset = new Studyset(nameTextField.getText());
@@ -99,7 +100,13 @@ public class CsvImportController {
             for (int i = 0; i < 3; i++) {
                 list.add(strings[i].replaceAll("\"", ""));
             }
-            Student student = new Student(list.get(2), list.get(1), nameTextField.getText(), list.get(0), Mastery.UNKNOWN);
+            Student student = new Student(
+                    list.get(2),
+                    list.get(1),
+                    nameTextField.getText(),
+                    list.get(0), Mastery.UNKNOWN
+            );
+
             studyset.addStudent(student);
             list.clear();
         }
@@ -152,16 +159,13 @@ public class CsvImportController {
      */
     private void lockImport() {
         try {
-            FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(getClass().getResource("../view/overview.fxml"));
+            FXMLLoader loader = new FXMLLoader(App.class.getResource("overview.fxml"));
             Parent root = loader.load();
-            Stage stage = (Stage) nameTextField.getScene().getWindow();
-            stage = (Stage) stage.getOwner();
 
             OverviewController controller = loader.getController();
             controller.initData(studysets);
 
-            stage.setScene(new Scene(root));
+            App.setRoot(root);
             closeWindow();
 
         } catch (Exception e) {

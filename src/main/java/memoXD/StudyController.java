@@ -1,9 +1,8 @@
-package control;
+package memoXD;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
@@ -18,8 +17,6 @@ import model.Student;
 import model.StudyMode;
 import model.Studyset;
 
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -127,16 +124,14 @@ public class StudyController {
         updateDB(studyset);
 
         try {
-            FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(getClass().getResource("../view/studyset.fxml"));
+            FXMLLoader loader = new FXMLLoader(App.class.getResource("studyset.fxml"));
             Parent root = loader.load();
             Stage localStage = (Stage) titleLabel.getScene().getWindow();
-            Stage stage = (Stage) localStage.getOwner();
 
             StudysetController controller = loader.getController();
             controller.initData(studysets, studyset);
 
-            stage.setScene(new Scene(root));
+            App.setRoot(root);
 
             localStage.close();
 
@@ -162,10 +157,12 @@ public class StudyController {
         assignPrompt.setVisible(false);
         assignPrompt.setManaged(false);
 
-        switch (mode) {
-            case FIRSTNAME -> resultCondition = currentStudent.getFirstName().equalsIgnoreCase(answer);
-            case LASTNAME -> resultCondition = currentStudent.getLastName().equalsIgnoreCase(answer);
-            case ASSIGN -> resultCondition = currentStudent.getName().equals(answer);
+        if (mode == StudyMode.FIRSTNAME) {
+            resultCondition = currentStudent.getFirstName().equalsIgnoreCase(answer);
+        } else if (mode == StudyMode.LASTNAME) {
+            resultCondition = currentStudent.getLastName().equalsIgnoreCase(answer);
+        } else {
+            resultCondition = currentStudent.getName().equals(answer);
         }
 
         checkResultCondition(resultCondition);
@@ -238,11 +235,7 @@ public class StudyController {
         if (currentStudent.getImage() != null) {
             imageView.setImage(currentStudent.getImage());
         } else {
-            try {
-                imageView.setImage(new Image(new FileInputStream("src/assets/placeholder.png")));
-            } catch (FileNotFoundException f) {
-                f.printStackTrace();
-            }
+            imageView.setImage(new Image(App.class.getResourceAsStream("placeholder.png")));
         }
     }
 
@@ -320,9 +313,11 @@ public class StudyController {
      * @param student Schüler der entfernt wird
      */
     private void removeStudentFromVector(Student student) {
-        switch (student.getMastery()) {
-            case UNKNOWN -> unknownStudents.remove(unknownStudents.get(unknownStudents.indexOf(student)));
-            case KNOWN -> knownStudents.remove(knownStudents.get(knownStudents.indexOf(student)));
+        if (student.getMastery() == Mastery.UNKNOWN) {
+            unknownStudents.remove(unknownStudents.get(unknownStudents.indexOf(student)));
+        }
+        if (student.getMastery() == Mastery.KNOWN) {
+            knownStudents.remove(knownStudents.get(knownStudents.indexOf(student)));
         }
     }
 
@@ -364,10 +359,12 @@ public class StudyController {
         masteredStudents = new Vector<>();
 
         for (Student student: students) {
-            switch (student.getMastery()) {
-                case MASTERED -> masteredStudents.add(student);
-                case UNKNOWN -> unknownStudents.add(student);
-                case KNOWN -> knownStudents.add(student);
+            if (student.getMastery() == Mastery.MASTERED) {
+                masteredStudents.add(student);
+            } else if (student.getMastery() == Mastery.KNOWN) {
+                knownStudents.add(student);
+            } else {
+                unknownStudents.add(student);
             }
         }
 

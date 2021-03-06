@@ -1,4 +1,4 @@
-package control;
+package memoXD;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -19,7 +19,6 @@ import model.Student;
 import model.StudyMode;
 import model.Studyset;
 
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Vector;
 
@@ -57,12 +56,12 @@ public class StudysetController {
     @FXML
     public void editStudyset() {
         try {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../view/editStudyset.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("editStudyset.fxml"));
             Parent root1 = fxmlLoader.load();
             Stage stage = new Stage();
 
             EditStudysetController controller = fxmlLoader.getController();
-            controller.initData(studysets, currentStudyset,  "../view/studyset.fxml");
+            controller.initData(studysets, currentStudyset,  "studyset.fxml");
 
             stage.setTitle("Lernset bearbeiten...");
             stage.setScene(new Scene(root1));
@@ -84,7 +83,7 @@ public class StudysetController {
      */
     @FXML
     public void pressHome() throws IOException {
-        navigate("../view/home.fxml");
+        navigate("home.fxml");
     }
 
     /**
@@ -96,15 +95,13 @@ public class StudysetController {
      */
     private void navigate(String viewPath) throws IOException {
 
-        FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(getClass().getResource(viewPath));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource(viewPath));
         Parent root = loader.load();
 
-        Stage primaryStage = (Stage) vbox.getScene().getWindow();
-        if (viewPath.equals("../view/home.fxml")) {
+        if (viewPath.equals("home.fxml")) {
             HomeController controller = loader.getController();
             controller.initData(studysets);
-        } else if (viewPath.equals("../view/overview.fxml")) {
+        } else if (viewPath.equals("overview.fxml")) {
             OverviewController controller = loader.getController();
             controller.initData(studysets);
         } else {
@@ -112,9 +109,7 @@ public class StudysetController {
             return;
         }
 
-        primaryStage.setScene(new Scene(root));
-        primaryStage.show();
-
+        App.setRoot(root);
     }
 
     /**
@@ -125,7 +120,7 @@ public class StudysetController {
      */
     @FXML
     public void pressStudysets() throws IOException {
-        navigate("../view/overview.fxml");
+        navigate("overview.fxml");
     }
 
     /**
@@ -143,16 +138,13 @@ public class StudysetController {
 
         updateDB(currentStudyset);
 
-        FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(getClass().getResource("../view/studyset.fxml"));
+        FXMLLoader loader = new FXMLLoader(App.class.getResource("studyset.fxml"));
         Parent root = loader.load();
 
-        Stage primaryStage = (Stage) vbox.getScene().getWindow();
         StudysetController controller = loader.getController();
         controller.initData(studysets, currentStudyset);
 
-        primaryStage.setScene(new Scene(root));
-        primaryStage.show();
+        App.setRoot(root);
     }
 
     /**
@@ -187,8 +179,12 @@ public class StudysetController {
      */
     @FXML
     public void pressFlashcards() {
+        boolean noImg = getImageBool();
+
         if (currentStudyset.getStudents().size() == 0) {
-            showAlert("Das Lernset hat gar keine Personen.");
+            showAlert("Das Lernset hat keine Personen.");
+        } else if (noImg) {
+            showAlert("Bitte fügen Sie allen Schülern Bilder hinzu.");
         } else {
             startFlashcards();
         }
@@ -202,11 +198,14 @@ public class StudysetController {
      */
     @FXML
     public void pressStudyFirstnames() {
+        boolean noImg = getImageBool();
 
         currentStudyset.setMastery(currentStudyset.calcMastery());
 
         if (currentStudyset.getStudents().size() == 0) {
             showAlert("Das Lernset hat gar keine Personen.");
+        } else if (noImg) {
+            showAlert("Bitte fügen Sie allen Schülern Bilder hinzu.");
         } else if (currentStudyset.getMastery() != 100) {
             startStudyMode(StudyMode.FIRSTNAME);
         } else {
@@ -222,11 +221,14 @@ public class StudysetController {
      */
     @FXML
     public void pressStudyLastnames() {
+        boolean noImg = getImageBool();
 
         currentStudyset.setMastery(currentStudyset.calcMastery());
 
         if (currentStudyset.getStudents().size() == 0) {
             showAlert("Das Lernset hat gar keine Schüler.");
+        } else if (noImg) {
+            showAlert("Bitte fügen Sie allen Schülern Bilder hinzu.");
         } else if (currentStudyset.getMastery() != 100) {
             startStudyMode(StudyMode.LASTNAME);
         } else {
@@ -242,10 +244,13 @@ public class StudysetController {
      */
     @FXML
     public void pressAssign() {
+        boolean noImg = getImageBool();
 
         currentStudyset.setMastery(currentStudyset.calcMastery());
 
-        if (currentStudyset.getStudentCount() > 3) {
+        if (noImg) {
+            showAlert("Bitte fügen Sie allen Schülern Bilder hinzu.");
+        } else if (currentStudyset.getStudentCount() > 3) {
             startStudyMode(StudyMode.ASSIGN);
         } else {
             showAlert("Das Lernset hat zu wenig Schüler für diesen Modus");
@@ -276,7 +281,7 @@ public class StudysetController {
      */
     private void startFlashcards() {
         try {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../view/flashcards.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("flashcards.fxml"));
             Parent root1 = fxmlLoader.load();
             Stage stage = new Stage();
 
@@ -303,7 +308,7 @@ public class StudysetController {
      */
     private void startStudyMode(StudyMode mode) {
         try {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../view/study.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("study.fxml"));
             Parent root1 = fxmlLoader.load();
             Stage stage = new Stage();
 
@@ -333,16 +338,28 @@ public class StudysetController {
 
         deleteStudysetFromDB(currentStudyset);
 
-        FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(getClass().getResource("../view/overview.fxml"));
+        FXMLLoader loader = new FXMLLoader(App.class.getResource("overview.fxml"));
         Parent root = loader.load();
 
-        Stage primaryStage = (Stage) vbox.getScene().getWindow();
         OverviewController controller = loader.getController();
         controller.initData(studysets);
 
-        primaryStage.setScene(new Scene(root));
-        primaryStage.show();
+        App.setRoot(root);
+    }
+
+    /**
+     * Methode um herauszufinden, ob alle Schüler Bilder haben
+     * <p>
+     * Die Methode iteriert durch alle Schüler und gibt dann zurück, ob alle Schüler ein Bild haben oder nicht
+     *
+     */
+    private boolean getImageBool() {
+        for (Student student: currentStudyset.getStudents()) {
+            if (student.getImage() == null) {
+                return true;
+            }
+        }
+        return false;
     }
 
     /**
@@ -354,11 +371,11 @@ public class StudysetController {
      * @param studysets sammlung von allen Lernsets
      * @param studyset das aktuelle lernset
      */
-    public void initData(Vector<Studyset> studysets, Studyset studyset) throws IOException {
+    public void initData(Vector<Studyset> studysets, Studyset studyset) {
 
-        Image masteredImg = new Image(new FileInputStream("./src/assets/mastered.png"));
-        Image knownImg = new Image(new FileInputStream("./src/assets/known.png"));
-        Image unknownImg = new Image(new FileInputStream("./src/assets/unknown.png"));
+        Image masteredImg = new Image(App.class.getResourceAsStream("mastered.png"));
+        Image knownImg = new Image(App.class.getResourceAsStream("known.png"));
+        Image unknownImg = new Image(App.class.getResourceAsStream("unknown.png"));
 
         this.studysets = studysets;
         this.currentStudyset = studyset;
@@ -375,10 +392,12 @@ public class StudysetController {
             Label lastName = new Label(student.getLastName());
             ImageView masteryImg = new ImageView();
 
-            switch (student.getMastery()) {
-                case UNKNOWN -> masteryImg.setImage(unknownImg);
-                case KNOWN -> masteryImg.setImage(knownImg);
-                case MASTERED -> masteryImg.setImage(masteredImg);
+            if (student.getMastery() == Mastery.UNKNOWN) {
+                masteryImg.setImage(unknownImg);
+            } else if (student.getMastery() == Mastery.KNOWN) {
+                masteryImg.setImage(knownImg);
+            } else {
+                masteryImg.setImage(masteredImg);
             }
 
             studyset.setMastery(studyset.calcMastery());

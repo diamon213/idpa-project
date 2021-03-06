@@ -1,4 +1,4 @@
-package control;
+package memoXD;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -7,6 +7,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import model.Studyset;
 
+import java.io.IOException;
 import java.util.Vector;
 
 /**
@@ -17,7 +18,9 @@ import java.util.Vector;
  * @author Aladin Boudouda
  *
  */
-public class Main extends Application {
+public class App extends Application {
+
+    private static Scene scene;
 
     private Vector<Studyset> studysets;
 
@@ -27,25 +30,34 @@ public class Main extends Application {
      * Die Methode initialisiert zu erst die Daten von der Datenbank
      * und startet dann das JavaFX GUI
      *
-     * @param primaryStage das Hauptfenster
+     * @param stage das Hauptfenster
      */
     @Override
-    public void start(Stage primaryStage) throws Exception{
+    public void start(Stage stage) throws IOException {
 
         initDataFromDB();
 
-        FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(getClass().getResource("../view/home.fxml"));
-        Parent root = loader.load();
+        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("home" + ".fxml"));
+        Parent root = fxmlLoader.load();
 
-        HomeController controller = loader.getController();
+        HomeController controller = fxmlLoader.getController();
         controller.initData(studysets);
 
-        primaryStage.setTitle("MemoXD");
-        primaryStage.setScene(new Scene(root, 650, 425));
-        primaryStage.show();
+        scene = new Scene(root);
+        stage.setTitle("MemoXD");
+        stage.setScene(scene);
+        stage.show();
+    }
 
-
+    /**
+     * Lädt den Inhalt des Fensters
+     *<p>
+     * Die Methode setzt die Wurzelszene des Fensters
+     *
+     * @param root die Szene
+     */
+    static void setRoot(Parent root) {
+        scene.setRoot(root);
     }
 
     /**
@@ -60,7 +72,6 @@ public class Main extends Application {
         studysets = new Vector<>();
     }
 
-
     /**
      * Main Methode der Applikation
      *<p>
@@ -68,6 +79,7 @@ public class Main extends Application {
      *
      */
     public static void main(String[] args) {
-        launch(args);
+        launch();
     }
+
 }
