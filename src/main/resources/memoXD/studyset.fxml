@@ -10,92 +10,115 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="425.0" prefWidth="650.0" style="-fx-background-color: #242429;" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="memoXD.StudysetController">
-   <children>
-      <ScrollPane fitToWidth="true" focusTraversable="false" layoutY="116.0" prefHeight="310.0" prefWidth="462.0" style="-fx-background-color: #242429;">
-         <content>
-            <VBox fx:id="vbox" prefHeight="330.0" prefWidth="447.0" style="-fx-background-color: #242429;" />
-         </content>
-      </ScrollPane>
-      <TextField fx:id="searchbar" layoutX="273.0" layoutY="11.0" onKeyReleased="#keyTyped" prefHeight="26.0" prefWidth="172.0" promptText="Person suchen" style="-fx-background-color: #3c3c44;">
-         <font>
-            <Font size="14.0" />
-         </font></TextField>
-      <HBox layoutY="95.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="20.0" prefWidth="462.0" spacing="10.0">
-         <children>
-            <Label prefHeight="20.0" prefWidth="49.0" text="Anrede" textFill="WHITE">
-               <HBox.margin>
-                  <Insets left="30.0" />
-               </HBox.margin>
-            </Label>
-            <Label contentDisplay="CENTER" prefHeight="20.0" prefWidth="126.0" text="Vorname" textFill="WHITE" />
-            <Label prefHeight="20.0" prefWidth="154.0" text="Nachname" textFill="WHITE" />
-            <Label prefHeight="18.0" prefWidth="59.0" text="Lernstand" textFill="WHITE" />
-         </children>
-      </HBox>
-      <Button alignment="CENTER" contentDisplay="CENTER" graphicTextGap="0.0" layoutX="390.0" layoutY="45.0" mnemonicParsing="false" onAction="#deleteStudyset" prefHeight="34.0" prefWidth="69.0" style="-fx-background-color: #242429;" text="Löschen" textFill="WHITE" underline="true">
-         <font>
-            <Font size="13.0" />
-         </font></Button>
-      <Button alignment="CENTER" contentDisplay="CENTER" graphicTextGap="0.0" layoutX="223.0" layoutY="45.0" mnemonicParsing="false" onAction="#resetMastery" prefHeight="34.0" prefWidth="161.0" style="-fx-background-color: #242429;" text="Lernstand zurücksetzen" textFill="WHITE" underline="true">
-         <font>
-            <Font size="13.0" />
-         </font></Button>
-      <Button alignment="CENTER" contentDisplay="CENTER" graphicTextGap="0.0" layoutX="140.0" layoutY="45.0" mnemonicParsing="false" onAction="#editStudyset" prefHeight="34.0" prefWidth="82.0" style="-fx-background-color: #242429;" text="Bearbeiten" textFill="WHITE" underline="true">
-         <font>
-            <Font size="13.0" />
-         </font>
-      </Button>
-      <AnchorPane layoutX="462.0" layoutY="-7.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="433.0" prefWidth="190.0" style="-fx-background-color: #3E606F;">
-         <children>
-            <VBox maxHeight="500.0" maxWidth="243.0" minHeight="425.0" minWidth="166.0" prefHeight="426.0" prefWidth="190.0" spacing="1.0">
-               <children>
-                  <Label fx:id="titleLabel" prefHeight="145.0" prefWidth="190.0" text="I3a" textFill="WHITE">
-                     <font>
-                        <Font name="System Bold" size="38.0" />
-                     </font>
-                     <padding>
-                        <Insets bottom="20.0" left="30.0" top="10.0" />
-                     </padding>
-                  </Label>
-                  <Button alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#pressHome" prefHeight="40.0" prefWidth="188.0" style="-fx-background-color: #3E606F;" text="Home" textFill="WHITE">
-                     <font>
-                        <Font size="22.0" />
-                     </font></Button>
-                  <Button alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#pressStudysets" prefHeight="40.0" prefWidth="188.0" style="-fx-background-color: #3E606F;" text="Lernsets" textFill="WHITE">
-                     <font>
-                        <Font size="22.0" />
-                     </font></Button>
-                  <Button alignment="BASELINE_LEFT" minWidth="164.0" mnemonicParsing="false" onAction="#pressFlashcards" prefHeight="40.0" prefWidth="188.0" style="-fx-background-color: #3E606F;" text="Quick Karteikarten" textFill="WHITE" underline="true">
-                     <VBox.margin>
-                        <Insets top="20.0" />
-                     </VBox.margin>
-                     <font>
-                        <Font size="17.0" />
-                     </font></Button>
-                  <Button alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#pressStudyFirstnames" prefHeight="40.0" prefWidth="188.0" style="-fx-background-color: #3E606F;" text="Vornamen lernen" textFill="WHITE" underline="true">
-                     <font>
-                        <Font size="17.0" />
-                     </font></Button>
-                  <Button alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#pressStudyLastnames" prefHeight="40.0" prefWidth="188.0" style="-fx-background-color: #3E606F;" text="Nachnamen lernen" textFill="WHITE" underline="true">
-                     <font>
-                        <Font size="17.0" />
-                     </font></Button>
-                  <Button alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#pressAssign" prefHeight="40.0" prefWidth="188.0" style="-fx-background-color: #3E606F;" text="Auswahlmodus" textFill="WHITE" underline="true">
-                     <font>
-                        <Font size="17.0" />
-                     </font></Button>
-               </children>
-            </VBox>
-         </children>
-      </AnchorPane>
-      <Label fx:id="masteryLabel" alignment="CENTER" layoutX="-14.0" layoutY="-1.0" maxHeight="-Infinity" prefHeight="79.0" prefWidth="162.0" text="100%" textFill="WHITE">
-         <font>
-            <Font name="System Bold" size="38.0" />
-         </font>
-         <padding>
-            <Insets bottom="40.0" left="20.0" top="30.0" />
-         </padding>
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="425.0"
+            prefWidth="650.0" style="-fx-background-color: #242429;" xmlns="http://javafx.com/javafx/15.0.1"
+            xmlns:fx="http://javafx.com/fxml/1" fx:controller="memoXD.StudysetController">
+   <ScrollPane fitToWidth="true" layoutY="116.0" prefHeight="310.0" prefWidth="462.0"
+               style="-fx-background-color: #242429;">
+      <VBox fx:id="vbox" prefHeight="330.0" prefWidth="447.0" style="-fx-background-color: #242429;"/>
+   </ScrollPane>
+   <TextField fx:id="searchbar" layoutX="273.0" layoutY="11.0" onKeyReleased="#keyTyped" prefHeight="26.0"
+              prefWidth="172.0" promptText="Person suchen" style="-fx-background-color: #3c3c44;">
+      <font>
+         <Font size="14.0"/>
+      </font>
+   </TextField>
+   <HBox layoutY="95.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
+         prefHeight="20.0" prefWidth="462.0" spacing="10.0">
+      <Label prefHeight="20.0" prefWidth="49.0" text="Anrede" textFill="WHITE">
+         <HBox.margin>
+            <Insets left="30.0"/>
+         </HBox.margin>
       </Label>
-   </children>
+      <Label contentDisplay="CENTER" prefHeight="20.0" prefWidth="126.0" text="Vorname" textFill="WHITE"/>
+      <Label prefHeight="20.0" prefWidth="154.0" text="Nachname" textFill="WHITE"/>
+      <Label prefHeight="18.0" prefWidth="59.0" text="Lernstand" textFill="WHITE"/>
+   </HBox>
+   <Button alignment="CENTER" contentDisplay="CENTER" graphicTextGap="0.0" layoutX="390.0" layoutY="45.0"
+           mnemonicParsing="false" onAction="#deleteStudyset" prefHeight="34.0" prefWidth="69.0"
+           style="-fx-background-color: #242429;" text="Löschen" textFill="WHITE" underline="true">
+      <font>
+         <Font size="13.0"/>
+      </font>
+   </Button>
+   <Button alignment="CENTER" contentDisplay="CENTER" graphicTextGap="0.0" layoutX="223.0" layoutY="45.0"
+           mnemonicParsing="false" onAction="#resetMastery" prefHeight="34.0" prefWidth="161.0"
+           style="-fx-background-color: #242429;" text="Lernstand zurücksetzen" textFill="WHITE" underline="true">
+      <font>
+         <Font size="13.0"/>
+      </font>
+   </Button>
+   <Button alignment="CENTER" contentDisplay="CENTER" graphicTextGap="0.0" layoutX="140.0" layoutY="45.0"
+           mnemonicParsing="false" onAction="#editStudyset" prefHeight="34.0" prefWidth="82.0"
+           style="-fx-background-color: #242429;" text="Bearbeiten" textFill="WHITE" underline="true">
+      <font>
+         <Font size="13.0"/>
+      </font>
+   </Button>
+   <AnchorPane layoutX="462.0" layoutY="-7.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
+               minWidth="-Infinity" prefHeight="433.0" prefWidth="190.0" style="-fx-background-color: #3E606F;">
+      <VBox maxHeight="500.0" maxWidth="243.0" minHeight="425.0" minWidth="166.0" prefHeight="426.0"
+            prefWidth="190.0" spacing="1.0">
+         <Label fx:id="titleLabel" prefHeight="145.0" prefWidth="190.0" text="I3a" textFill="WHITE">
+            <font>
+               <Font name="System Bold" size="38.0"/>
+            </font>
+            <padding>
+               <Insets bottom="20.0" left="30.0" top="10.0"/>
+            </padding>
+         </Label>
+         <Button alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#pressHome" prefHeight="40.0"
+                 prefWidth="188.0" style="-fx-background-color: #3E606F;" text="Home" textFill="WHITE">
+            <font>
+               <Font size="22.0"/>
+            </font>
+         </Button>
+         <Button alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#pressStudysets" prefHeight="40.0"
+                 prefWidth="188.0" style="-fx-background-color: #3E606F;" text="Lernsets" textFill="WHITE">
+            <font>
+               <Font size="22.0"/>
+            </font>
+         </Button>
+         <Button alignment="BASELINE_LEFT" minWidth="164.0" mnemonicParsing="false" onAction="#pressFlashcards"
+                 prefHeight="40.0" prefWidth="188.0" style="-fx-background-color: #3E606F;"
+                 text="Quick Karteikarten" textFill="WHITE" underline="true">
+            <VBox.margin>
+               <Insets top="20.0"/>
+            </VBox.margin>
+            <font>
+               <Font size="17.0"/>
+            </font>
+         </Button>
+         <Button alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#pressStudyFirstnames"
+                 prefHeight="40.0" prefWidth="188.0" style="-fx-background-color: #3E606F;" text="Vornamen lernen"
+                 textFill="WHITE" underline="true">
+            <font>
+               <Font size="17.0"/>
+            </font>
+         </Button>
+         <Button alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#pressStudyLastnames"
+                 prefHeight="40.0" prefWidth="188.0" style="-fx-background-color: #3E606F;"
+                 text="Nachnamen lernen" textFill="WHITE" underline="true">
+            <font>
+               <Font size="17.0"/>
+            </font>
+         </Button>
+         <Button alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#pressAssign" prefHeight="40.0"
+                 prefWidth="188.0" style="-fx-background-color: #3E606F;" text="Auswahlmodus" textFill="WHITE"
+                 underline="true">
+            <font>
+               <Font size="17.0"/>
+            </font>
+         </Button>
+      </VBox>
+   </AnchorPane>
+   <Label fx:id="masteryLabel" alignment="CENTER" layoutX="-14.0" layoutY="-1.0" maxHeight="-Infinity" prefHeight="79.0"
+          prefWidth="162.0" text="100%" textFill="WHITE">
+      <font>
+         <Font name="System Bold" size="38.0"/>
+      </font>
+      <padding>
+         <Insets bottom="40.0" left="20.0" top="30.0"/>
+      </padding>
+   </Label>
 </AnchorPane>

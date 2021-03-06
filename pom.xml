@@ -38,6 +38,11 @@
                 <configuration>
                     <mainClass>memoXD.App</mainClass>
                     <launcher>memoXD</launcher>
+                    <compress>2</compress>
+                    <jlinkZipName>MemoXD</jlinkZipName>
+                    <jlinkImageName>MemoXD</jlinkImageName>
+                    <noManPages>true</noManPages>
+                    <noHeaderFiles>true</noHeaderFiles>
                 </configuration>
             </plugin>
         </plugins>

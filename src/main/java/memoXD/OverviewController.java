@@ -8,6 +8,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.stage.Modality;
@@ -129,10 +130,12 @@ public class OverviewController {
             FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("editStudyset.fxml"));
             Parent root1 = fxmlLoader.load();
             Stage stage = new Stage();
+            Image icon = new Image(App.class.getResourceAsStream("icon.png"));
 
             EditStudysetController controller = fxmlLoader.getController();
             controller.initData(studysets, null, "overview.fxml");
 
+            stage.getIcons().add(icon);
             stage.setTitle("Lernset zusammenstellen...");
             stage.setScene(new Scene(root1));
             stage.initModality(Modality.WINDOW_MODAL);
@@ -155,10 +158,12 @@ public class OverviewController {
             FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("csvImport.fxml"));
             Parent root1 = fxmlLoader.load();
             Stage stage = new Stage();
+            Image icon = new Image(App.class.getResourceAsStream("icon.png"));
 
             CsvImportController controller = fxmlLoader.getController();
             controller.initData(studysets);
 
+            stage.getIcons().add(icon);
             stage.setTitle("Klasse importieren...");
             stage.setScene(new Scene(root1));
             stage.initModality(Modality.WINDOW_MODAL);

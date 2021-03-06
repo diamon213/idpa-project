@@ -4,10 +4,12 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import model.Studyset;
 
 import java.io.IOException;
+import java.net.URL;
 import java.util.Vector;
 
 /**
@@ -35,16 +37,18 @@ public class App extends Application {
     @Override
     public void start(Stage stage) throws IOException {
 
-        initDataFromDB();
-
         FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("home" + ".fxml"));
         Parent root = fxmlLoader.load();
+        Image icon = new Image(App.class.getResourceAsStream("icon.png"));
 
         HomeController controller = fxmlLoader.getController();
+        initDataFromDB();
         controller.initData(studysets);
 
         scene = new Scene(root);
         stage.setTitle("MemoXD");
+
+        stage.getIcons().add(icon);
         stage.setScene(scene);
         stage.show();
     }

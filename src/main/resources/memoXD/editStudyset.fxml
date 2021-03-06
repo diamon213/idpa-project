@@ -10,14 +10,13 @@
 <?import javafx.scene.text.Font?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="545.0" prefWidth="515.0" style="-fx-background-color: #242429;" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="memoXD.EditStudysetController">
-   <ScrollPane layoutX="-1.0" layoutY="113.0" prefHeight="432.0" prefWidth="515.0" style="-fx-background-color: #242429;">
-      <content>
-         <VBox fx:id="vbox" prefHeight="430.0" prefWidth="499.0" spacing="50.0" style="-fx-background-color: #242429;">
-            <padding>
-               <Insets bottom="10.0" top="10.0" />
-            </padding>
-         </VBox>
-      </content>
+   <ScrollPane layoutX="-1.0" layoutY="113.0" prefHeight="432.0" prefWidth="515.0"
+               style="-fx-background-color: #242429;">
+      <VBox fx:id="vbox" prefHeight="430.0" prefWidth="499.0" spacing="50.0" style="-fx-background-color: #242429;">
+         <padding>
+            <Insets bottom="10.0" top="10.0"/>
+         </padding>
+      </VBox>
    </ScrollPane>
    <Label layoutX="26.0" layoutY="26.0" text="Name des Lernsets:" textFill="WHITE">
       <font>

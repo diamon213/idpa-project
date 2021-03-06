@@ -9,56 +9,63 @@
 <?import javafx.scene.text.Font?>
 
 
-<AnchorPane prefHeight="542.0" prefWidth="767.0" style="-fx-background-color: #242429;" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="memoXD.FlashcardsController">
-   <children>
-      <AnchorPane prefHeight="542.0" prefWidth="210.0" style="-fx-background-color: #3E606F;">
-         <children>
-            <Label fx:id="progressLabel" alignment="CENTER" layoutX="37.0" layoutY="256.0" prefHeight="66.0" prefWidth="133.0" text="2/45" textFill="WHITE">
-               <font>
-                  <Font size="45.0" />
-               </font>
-            </Label>
-            <Button cancelButton="true" layoutY="23.0" mnemonicParsing="false" onAction="#cancelGame" prefHeight="26.0" prefWidth="210.0" style="-fx-background-color: #3E606F;" text="Zurück" textFill="WHITE" underline="true">
-               <font>
-                  <Font size="19.0" />
-               </font>
-            </Button>
-            <ProgressBar fx:id="progressBar" layoutX="21.0" layoutY="320.0" opacity="0.89" prefHeight="18.0" prefWidth="167.0" progress="0.0" />
-            <Label fx:id="titleLabel" alignment="CENTER" layoutX="5.0" layoutY="147.0" prefHeight="66.0" prefWidth="198.0" text="I3a" textFill="WHITE">
-               <font>
-                  <Font size="44.0" />
-               </font>
-            </Label>
-         </children>
-      </AnchorPane>
-      <AnchorPane fx:id="flashcard" layoutX="284.0" layoutY="138.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="240.0" prefWidth="399.0" style="-fx-background-color: #91AA9D;">
-         <children>
-            <Label fx:id="studentLabel" alignment="CENTER" contentDisplay="CENTER" onMouseClicked="#turnLabel" prefHeight="246.0" prefWidth="406.0" text="Label">
-               <font>
-                  <Font size="28.0" />
-               </font>
-            </Label>
-            <ImageView fx:id="studentImage" fitHeight="200.0" fitWidth="400.0" layoutY="20.0" onMouseClicked="#turnImage" pickOnBounds="true" preserveRatio="true">
-               <viewport>
-                  <Rectangle2D />
-               </viewport>
-            </ImageView>
-         </children>
-      </AnchorPane>
-      <Button layoutX="545.0" layoutY="413.0" mnemonicParsing="false" onAction="#nextFlashcard" style="-fx-background-color: #242429;" text="→" textFill="WHITE">
+<AnchorPane prefHeight="542.0" prefWidth="767.0" style="-fx-background-color: #242429;"
+            xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="memoXD.FlashcardsController">
+   <AnchorPane prefHeight="542.0" prefWidth="210.0" style="-fx-background-color: #3E606F;">
+      <Label fx:id="progressLabel" alignment="CENTER" layoutX="37.0" layoutY="256.0" prefHeight="66.0"
+             prefWidth="133.0" text="2/45" textFill="WHITE">
          <font>
-            <Font size="19.0" />
-         </font>
-      </Button>
-      <Button layoutX="384.0" layoutY="413.0" mnemonicParsing="false" onAction="#lastFlashcard" style="-fx-background-color: #242429;" text="←" textFill="WHITE">
-         <font>
-            <Font size="19.0" />
-         </font>
-      </Button>
-      <Label fx:id="smallProgressLabel" alignment="CENTER" layoutX="423.0" layoutY="417.0" prefHeight="35.0" prefWidth="121.0" text="2/45" textAlignment="CENTER" textFill="WHITE">
-         <font>
-            <Font size="24.0" />
+            <Font size="45.0"/>
          </font>
       </Label>
-   </children>
+      <Button cancelButton="true" layoutY="23.0" mnemonicParsing="false" onAction="#cancelGame" prefHeight="26.0"
+              prefWidth="210.0" style="-fx-background-color: #3e606f;" text="Zurück" textFill="WHITE"
+              underline="true">
+         <font>
+            <Font size="19.0"/>
+         </font>
+      </Button>
+      <ProgressBar fx:id="progressBar" layoutX="21.0" layoutY="320.0" opacity="0.89" prefHeight="18.0"
+                   prefWidth="167.0" progress="0.0"/>
+      <Label fx:id="titleLabel" alignment="CENTER" layoutX="5.0" layoutY="147.0" prefHeight="66.0" prefWidth="198.0"
+             text="I3a" textFill="WHITE">
+         <font>
+            <Font size="44.0"/>
+         </font>
+      </Label>
+   </AnchorPane>
+   <AnchorPane fx:id="flashcard" layoutX="284.0" layoutY="138.0" minHeight="-Infinity" minWidth="-Infinity"
+               prefHeight="240.0" prefWidth="399.0" style="-fx-background-color: #91AA9D;">
+      <Label fx:id="studentLabel" alignment="CENTER" contentDisplay="CENTER" onMouseClicked="#turnLabel"
+             prefHeight="246.0" prefWidth="406.0" text="Label">
+         <font>
+            <Font size="28.0"/>
+         </font>
+      </Label>
+      <ImageView fx:id="studentImage" fitHeight="200.0" fitWidth="400.0" layoutY="20.0" onMouseClicked="#turnImage"
+                 pickOnBounds="true" preserveRatio="true">
+         <viewport>
+            <Rectangle2D/>
+         </viewport>
+      </ImageView>
+   </AnchorPane>
+   <Button layoutX="545.0" layoutY="413.0" mnemonicParsing="false" onAction="#nextFlashcard"
+           style="-fx-background-color: #242429;" text="→" textFill="WHITE">
+      <font>
+         <Font size="19.0"/>
+      </font>
+   </Button>
+   <Button layoutX="384.0" layoutY="413.0" mnemonicParsing="false" onAction="#lastFlashcard"
+           style="-fx-background-color: #242429;" text="←" textFill="WHITE">
+      <font>
+         <Font size="19.0"/>
+      </font>
+   </Button>
+   <Label fx:id="smallProgressLabel" alignment="CENTER" layoutX="423.0" layoutY="417.0" prefHeight="35.0"
+          prefWidth="121.0" text="2/45" textAlignment="CENTER" textFill="WHITE">
+      <font>
+         <Font size="24.0"/>
+      </font>
+   </Label>
 </AnchorPane>

@@ -59,10 +59,12 @@ public class StudysetController {
             FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("editStudyset.fxml"));
             Parent root1 = fxmlLoader.load();
             Stage stage = new Stage();
+            Image icon = new Image(App.class.getResourceAsStream("icon.png"));
 
             EditStudysetController controller = fxmlLoader.getController();
             controller.initData(studysets, currentStudyset,  "studyset.fxml");
 
+            stage.getIcons().add(icon);
             stage.setTitle("Lernset bearbeiten...");
             stage.setScene(new Scene(root1));
             stage.initModality(Modality.WINDOW_MODAL);
@@ -284,10 +286,12 @@ public class StudysetController {
             FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("flashcards.fxml"));
             Parent root1 = fxmlLoader.load();
             Stage stage = new Stage();
+            Image icon = new Image(App.class.getResourceAsStream("icon.png"));
 
             FlashcardsController controller = fxmlLoader.getController();
             controller.initData(studysets, currentStudyset);
 
+            stage.getIcons().add(icon);
             stage.setTitle("Karteikarten");
             stage.setScene(new Scene(root1));
             stage.initModality(Modality.WINDOW_MODAL);
@@ -311,10 +315,13 @@ public class StudysetController {
             FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("study.fxml"));
             Parent root1 = fxmlLoader.load();
             Stage stage = new Stage();
+            Image icon = new Image(App.class.getResourceAsStream("icon.png"));
+
 
             StudyController controller = fxmlLoader.getController();
             controller.initData(studysets, currentStudyset, mode);
 
+            stage.getIcons().add(icon);
             stage.setTitle("Lernmodus");
             stage.setScene(new Scene(root1));
             stage.initModality(Modality.WINDOW_MODAL);
