@@ -67,6 +67,7 @@ public class StudysetController {
             stage.getIcons().add(icon);
             stage.setTitle("Lernset bearbeiten...");
             stage.setScene(new Scene(root1));
+            stage.setResizable(false);
             stage.initModality(Modality.WINDOW_MODAL);
             stage.initOwner(vbox.getScene().getWindow());
             stage.show();
@@ -270,6 +271,7 @@ public class StudysetController {
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle("Warnung...");
         alert.setHeaderText(null);
+        alert.setResizable(false);
         alert.setContentText(message);
         alert.initOwner(vbox.getScene().getWindow());
         alert.show();
@@ -294,6 +296,7 @@ public class StudysetController {
             stage.getIcons().add(icon);
             stage.setTitle("Karteikarten");
             stage.setScene(new Scene(root1));
+            stage.setResizable(false);
             stage.initModality(Modality.WINDOW_MODAL);
             stage.initOwner(vbox.getScene().getWindow());
             stage.show();
@@ -324,6 +327,7 @@ public class StudysetController {
             stage.getIcons().add(icon);
             stage.setTitle("Lernmodus");
             stage.setScene(new Scene(root1));
+            stage.setResizable(false);
             stage.initModality(Modality.WINDOW_MODAL);
             stage.initOwner(vbox.getScene().getWindow());
             stage.show();

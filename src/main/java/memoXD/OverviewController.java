@@ -138,6 +138,7 @@ public class OverviewController {
             stage.getIcons().add(icon);
             stage.setTitle("Lernset zusammenstellen...");
             stage.setScene(new Scene(root1));
+            stage.setResizable(false);
             stage.initModality(Modality.WINDOW_MODAL);
             stage.initOwner(vbox.getScene().getWindow());
             stage.show();
@@ -166,6 +167,7 @@ public class OverviewController {
             stage.getIcons().add(icon);
             stage.setTitle("Klasse importieren...");
             stage.setScene(new Scene(root1));
+            stage.setResizable(false);
             stage.initModality(Modality.WINDOW_MODAL);
             stage.initOwner(vbox.getScene().getWindow());
             stage.show();
